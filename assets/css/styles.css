@@ -1,0 +1,98 @@
+:root {
+  --color-ink: #15130f;
+  --color-muted: #706b63;
+  --color-surface: #fffdf9;
+  --color-page: #f5f1ea;
+  --color-line: #e5ded3;
+  --color-accent: #a46b2d;
+  --color-accent-dark: #7f4e1b;
+  --color-success: #2f7657;
+  --shadow: 0 16px 45px rgba(42, 31, 17, .09);
+  --radius: 16px;
+  --container: 1120px;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--color-ink);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--color-page); line-height: 1.55; }
+a { color: inherit; text-decoration: none; }
+button, input, select { font: inherit; }
+
+.container { width: min(calc(100% - 2rem), var(--container)); margin-inline: auto; }
+.site-header { background: rgba(255, 253, 249, .92); border-bottom: 1px solid var(--color-line); position: sticky; top: 0; z-index: 10; backdrop-filter: blur(12px); }
+.nav { min-height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.brand { font-family: Georgia, serif; font-size: 1.3rem; font-weight: 700; letter-spacing: .035em; }
+.nav-links { display: flex; align-items: center; gap: 1rem; color: var(--color-muted); font-size: .92rem; }
+.nav-links a:hover { color: var(--color-accent-dark); }
+
+.hero { padding: 5.5rem 0 4.5rem; background: radial-gradient(circle at 80% 20%, #ead7bc, transparent 34%), var(--color-surface); }
+.eyebrow { color: var(--color-accent-dark); font-weight: 700; font-size: .78rem; letter-spacing: .12em; text-transform: uppercase; }
+h1, h2, h3, p { margin-top: 0; }
+h1 { max-width: 680px; font-family: Georgia, serif; font-size: clamp(2.5rem, 7vw, 4.75rem); line-height: 1.04; margin-bottom: 1.25rem; }
+h2 { font-size: clamp(1.65rem, 4vw, 2.35rem); margin-bottom: .5rem; }
+.lead { max-width: 610px; color: var(--color-muted); font-size: 1.08rem; }
+.page-section { padding: 3.5rem 0; }
+.section-heading { margin-bottom: 1.5rem; }
+.section-heading p { color: var(--color-muted); margin-bottom: 0; }
+
+.button { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: .7rem 1.1rem; border: 1px solid transparent; border-radius: 999px; background: var(--color-ink); color: #fff; cursor: pointer; font-weight: 700; transition: transform .2s, background .2s; }
+.button:hover { background: #302a23; transform: translateY(-1px); }
+.button--outline { background: transparent; border-color: var(--color-ink); color: var(--color-ink); }
+.button--outline:hover { background: var(--color-ink); color: #fff; }
+.button--full { width: 100%; }
+
+.card { background: var(--color-surface); border: 1px solid var(--color-line); border-radius: var(--radius); box-shadow: var(--shadow); }
+.placeholder { display: grid; min-height: 160px; place-items: center; padding: 1.5rem; border: 1px dashed #cfc4b5; border-radius: 12px; color: var(--color-muted); text-align: center; background: #fffcf6; }
+.product-grid, .dashboard-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+.filter-list { display: flex; flex-wrap: wrap; gap: .75rem; margin-bottom: 2rem; }
+.filter { padding: .65rem 1rem; border: 1px solid var(--color-line); border-radius: 999px; background: var(--color-surface); color: var(--color-muted); }
+.offer-banner { padding: 1.5rem; background: var(--color-ink); color: white; }
+.offer-banner p { margin-bottom: 0; color: #ddd3c7; }
+
+.product-layout { display: grid; gap: 1.5rem; }
+.product-image { min-height: 330px; }
+.product-info { padding: 1.5rem; }
+.product-brand { color: var(--color-accent-dark); font-size: .86rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+.product-name { font-family: Georgia, serif; font-size: 2rem; margin: .35rem 0 .75rem; }
+.price-row { display: flex; align-items: center; flex-wrap: wrap; gap: .65rem; margin: 1.25rem 0; }
+.price-before { color: var(--color-muted); text-decoration: line-through; }
+.price-current { color: var(--color-accent-dark); font-size: 1.5rem; font-weight: 800; }
+.discount-badge { padding: .25rem .55rem; border-radius: 999px; color: var(--color-success); background: #e0f1e8; font-size: .8rem; font-weight: 800; }
+.stock { color: var(--color-success); font-weight: 700; }
+.button-group { display: grid; gap: .75rem; margin-top: 1.5rem; }
+
+.cart-layout, .checkout-layout { display: grid; gap: 1rem; }
+.cart-list, .order-summary, .form-card { padding: 1.25rem; }
+.summary-row { display: flex; justify-content: space-between; gap: 1rem; padding: .75rem 0; border-bottom: 1px solid var(--color-line); }
+.summary-row:last-child { border-bottom: 0; }
+.summary-total { font-size: 1.1rem; font-weight: 800; }
+.empty-state { padding: 2.5rem 1.25rem; text-align: center; }
+.empty-state p { color: var(--color-muted); }
+.form-grid { display: grid; gap: 1rem; }
+.field { display: grid; gap: .4rem; font-weight: 700; font-size: .9rem; }
+.field input, .field select { width: 100%; padding: .75rem .85rem; border: 1px solid var(--color-line); border-radius: 9px; background: #fff; color: var(--color-ink); }
+.field input:focus, .field select:focus { outline: 2px solid #d7b17c; border-color: var(--color-accent); }
+.yape-space { padding: 1rem; border: 1px dashed #b598d0; border-radius: 10px; background: #faf7ff; color: #624683; font-size: .9rem; }
+
+.admin-body { min-height: 100vh; display: grid; place-items: center; padding: 1.25rem; }
+.login-card { width: min(100%, 420px); padding: 2rem; }
+.login-card h1 { font-size: 2rem; }
+.dashboard { padding: 2rem 0 3rem; }
+.metric-card { padding: 1.15rem; }
+.metric-card p { margin-bottom: .35rem; color: var(--color-muted); font-size: .9rem; }
+.metric-card strong { font-size: 1.35rem; }
+.muted { color: var(--color-muted); }
+.footer { padding: 2rem 0; color: var(--color-muted); font-size: .9rem; text-align: center; }
+
+@media (min-width: 700px) {
+  .product-grid { grid-template-columns: repeat(3, 1fr); }
+  .dashboard-grid { grid-template-columns: repeat(3, 1fr); }
+  .product-layout { grid-template-columns: 1.05fr .95fr; align-items: start; }
+  .cart-layout, .checkout-layout { grid-template-columns: minmax(0, 1.45fr) minmax(280px, .8fr); align-items: start; }
+  .button-group { grid-template-columns: 1fr 1fr; }
+  .form-grid--two { grid-template-columns: 1fr 1fr; }
+}
+
+@media (min-width: 980px) { .dashboard-grid { grid-template-columns: repeat(4, 1fr); } }
