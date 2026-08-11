@@ -1,0 +1,13 @@
+{
+  "name": "exclusive-shop",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Tienda online de perfumes y productos premium.",
+  "type": "module",
+  "scripts": {
+    "check:firebase": "node --check assets/js/firebase/config.js && node --check assets/js/firebase/firebase-init.js"
+  },
+  "dependencies": {
+    "firebase": "^12.17.1"
+  }
+}

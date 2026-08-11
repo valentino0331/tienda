@@ -33,6 +33,24 @@ Proyecto en desarrollo.
 - Reportes
 - Administración
 
+## Firebase
+
+Proyecto Firebase:  
+Exclusive Shop
+
+Project ID:  
+exclusive-shop-debe0
+
+SDK:  
+Firebase JavaScript SDK modular
+
+GestiÃ³n de dependencias:  
+npm
+
+La configuraciÃ³n de la aplicaciÃ³n web se agregarÃ¡ posteriormente en
+`assets/js/firebase/config.js`. No se incluyen credenciales, cuentas de
+servicio ni servicios de Firebase activados en esta etapa.
+
 ## Arquitectura futura
 
 Los productos se manejarán mediante una colección genérica, sin colecciones separadas como `perfumes_hombre`, `perfumes_mujer` o `perfumes_unisex`.
