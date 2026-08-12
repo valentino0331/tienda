@@ -20,17 +20,22 @@ function renderCart() {
   if (!items.length) {
     const emptyMsg = document.createElement("div");
     emptyMsg.className = "cart-empty";
-    emptyMsg.style.cssText = "padding: 3rem 1.5rem; text-align: center;";
+    emptyMsg.style.cssText = "padding: 3.5rem 1.5rem; text-align: center;";
     emptyMsg.innerHTML = `
-      <div style="font-size: 3rem; margin-bottom: 1rem;">🛒</div>
+      <div style="width:64px;height:64px;margin:0 auto 1rem;background:#f1f5f9;border-radius:50%;display:grid;place-items:center;color:#64748b;">
+        <i data-lucide="shopping-bag" style="width:32px;height:32px;"></i>
+      </div>
       <h2 style="margin-bottom: 0.5rem;">Tu carrito está vacío</h2>
       <p class="muted" style="margin-bottom: 1.5rem;">Explora nuestros productos exclusivos y agrega tus favoritos.</p>
-      <a class="button button--accent" href="catalogo.html">Explorar catálogo</a>
+      <a class="button button--accent" href="catalogo.html">
+        <i data-lucide="arrow-right"></i> Explorar Catálogo
+      </a>
     `;
     cartList.append(emptyMsg);
 
     if (cartSummary) cartSummary.hidden = true;
     syncCartCount();
+    if (window.lucide) window.lucide.createIcons();
     return;
   }
 
@@ -55,8 +60,8 @@ function renderCart() {
     } else {
       const placeholder = document.createElement("div");
       placeholder.className = "cart-item__image";
-      placeholder.style.cssText = "display:grid;place-items:center;background:#f1f5f9;color:#94a3b8;font-size:0.75rem;";
-      placeholder.textContent = "Sin foto";
+      placeholder.style.cssText = "display:grid;place-items:center;background:#f1f5f9;color:#94a3b8;";
+      placeholder.innerHTML = `<i data-lucide="image"></i>`;
       row.append(placeholder);
     }
 
@@ -81,7 +86,7 @@ function renderCart() {
     const minusBtn = document.createElement("button");
     minusBtn.type = "button";
     minusBtn.className = "qty-btn";
-    minusBtn.textContent = "−";
+    minusBtn.innerHTML = `<i data-lucide="minus"></i>`;
     minusBtn.onclick = () => {
       if (item.quantity > 1) {
         updateQuantity(item.id, item.quantity - 1);
@@ -101,7 +106,7 @@ function renderCart() {
     const plusBtn = document.createElement("button");
     plusBtn.type = "button";
     plusBtn.className = "qty-btn";
-    plusBtn.textContent = "+";
+    plusBtn.innerHTML = `<i data-lucide="plus"></i>`;
     plusBtn.onclick = () => {
       updateQuantity(item.id, item.quantity + 1);
       renderCart();
@@ -117,9 +122,9 @@ function renderCart() {
     const removeBtn = document.createElement("button");
     removeBtn.type = "button";
     removeBtn.className = "button button--small button--danger";
-    removeBtn.style.padding = "0.3rem 0.6rem";
-    removeBtn.textContent = "✕";
-    removeBtn.title = "Eliminar";
+    removeBtn.style.padding = "0.4rem 0.6rem";
+    removeBtn.innerHTML = `<i data-lucide="trash-2"></i>`;
+    removeBtn.title = "Eliminar artículo";
     removeBtn.onclick = () => {
       removeFromCart(item.id);
       renderCart();
@@ -134,6 +139,7 @@ function renderCart() {
   if (totalNode) totalNode.textContent = money(total);
 
   syncCartCount();
+  if (window.lucide) window.lucide.createIcons();
 }
 
 clearBtn?.addEventListener("click", () => {

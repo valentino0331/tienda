@@ -6,18 +6,21 @@
   <meta name="description" content="Finalizar pedido en Exclusive Shop.">
   <title>Finalizar Pedido | Exclusive Shop</title>
   <link rel="stylesheet" href="assets/css/styles.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
   <header class="site-header">
     <nav class="nav container" aria-label="Navegación Principal">
       <a class="brand" href="index.html">
-        <span class="brand-icon">✦</span>
+        <span class="brand-icon"><i data-lucide="sparkles"></i></span>
         Exclusive Shop
       </a>
       <div class="nav-links">
-        <a class="nav-link" href="catalogo.html">Catálogo</a>
+        <a class="nav-link" href="catalogo.html">
+          <i data-lucide="grid"></i> Catálogo
+        </a>
         <a class="cart-link" href="carrito.html">
-          🛒 Carrito
+          <i data-lucide="shopping-bag"></i> Carrito
           <span class="cart-count" data-cart-count hidden>0</span>
         </a>
       </div>
@@ -26,7 +29,7 @@
 
   <main class="page-section container">
     <header class="section-heading">
-      <p class="eyebrow">✦ Proceso de Pago Seguro</p>
+      <p class="eyebrow"><i data-lucide="shield-check"></i> Proceso de Pago Seguro</p>
       <h1>Finalizar Compra</h1>
       <p class="lead">Completa tus datos para preparar el despacho de tu pedido.</p>
     </header>
@@ -36,13 +39,15 @@
     <div id="checkout-empty" class="card catalog-status" hidden>
       <h2>Tu carrito está vacío</h2>
       <p class="muted" style="margin-bottom: 1.5rem;">Agrega artículos al carrito antes de proceder al checkout.</p>
-      <a class="button button--accent" href="catalogo.html">Ir al catálogo</a>
+      <a class="button button--accent" href="catalogo.html"><i data-lucide="arrow-right"></i> Ir al catálogo</a>
     </div>
 
     <div id="checkout-success" class="card catalog-status" style="padding:3rem 2rem;" hidden>
-      <div style="font-size:3.5rem; margin-bottom:1rem;">🎉</div>
+      <div style="width:64px;height:64px;margin:0 auto 1rem;background:var(--color-success-light);color:var(--color-success);border-radius:50%;display:grid;place-items:center;">
+        <i data-lucide="check-circle-2" style="width:36px;height:36px;"></i>
+      </div>
       <h2 style="color:var(--color-success); margin-bottom:0.5rem;">¡Pedido Confirmado con Éxito!</h2>
-      <p class="muted" style="margin-bottom:1.5rem;">Hemos registrado tu pedido correctamente.</p>
+      <p class="muted" style="margin-bottom:1.5rem;">Hemos registrado tu pedido correctamente en el sistema.</p>
       
       <div class="card" style="max-width:480px; margin:0 auto 2rem; padding:1.5rem; text-align:left; background:#f8fafc;">
         <p style="margin-bottom:0.5rem;"><strong>Número de Pedido:</strong> <span id="success-order-number" style="color:var(--color-accent); font-weight:800;"></span></p>
@@ -50,12 +55,14 @@
         <p style="margin-bottom:0;"><strong>Método de Pago:</strong> <span id="success-payment-method" style="text-transform:uppercase;"></span></p>
       </div>
 
-      <a class="button button--accent" href="catalogo.html">Volver a la Tienda</a>
+      <a class="button button--accent" href="catalogo.html"><i data-lucide="shopping-bag"></i> Volver a la Tienda</a>
     </div>
 
     <div id="checkout-content" class="cart-layout" hidden>
       <form id="checkout-form" class="card form-card" style="padding:1.75rem;" novalidate>
-        <h2 style="font-size:1.25rem; margin-bottom:1.25rem;">1. Datos de Contacto</h2>
+        <h2 style="font-size:1.25rem; margin-bottom:1.25rem; display:flex; align-items:center; gap:0.5rem;">
+          <i data-lucide="user"></i> 1. Datos de Contacto
+        </h2>
         
         <div class="form-grid">
           <div class="form-grid--two">
@@ -79,7 +86,9 @@
             <input id="checkout-email" type="email" placeholder="correo@ejemplo.com">
           </label>
 
-          <h2 style="font-size:1.25rem; margin:1rem 0 0.5rem 0;">2. Método de Entrega</h2>
+          <h2 style="font-size:1.25rem; margin:1rem 0 0.5rem 0; display:flex; align-items:center; gap:0.5rem;">
+            <i data-lucide="truck"></i> 2. Método de Entrega
+          </h2>
           <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
             <label class="card" style="padding:1rem; cursor:pointer; display:flex; align-items:center; gap:0.5rem;">
               <input type="radio" name="delivery" value="pickup" checked> Recojo en tienda
@@ -94,7 +103,9 @@
             <input id="checkout-address" type="text" placeholder="Av. Principal 123, Dpto 401">
           </label>
 
-          <h2 style="font-size:1.25rem; margin:1rem 0 0.5rem 0;">3. Método de Pago</h2>
+          <h2 style="font-size:1.25rem; margin:1rem 0 0.5rem 0; display:flex; align-items:center; gap:0.5rem;">
+            <i data-lucide="credit-card"></i> 3. Método de Pago
+          </h2>
           <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
             <label class="card" style="padding:1rem; cursor:pointer; display:flex; align-items:center; gap:0.5rem;">
               <input type="radio" name="payment" value="yape" checked> Yape / Plin
@@ -126,7 +137,7 @@
         </div>
 
         <button id="checkout-confirm" class="button button--accent button--full" type="submit" form="checkout-form" style="margin-top: 1.5rem;">
-          ⚡ Confirmar y Pagar
+          <i data-lucide="zap"></i> Confirmar y Pagar
         </button>
       </aside>
     </div>

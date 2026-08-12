@@ -19,7 +19,7 @@ function renderCategoryFilters() {
   const allBtn = document.createElement("button");
   allBtn.type = "button";
   allBtn.className = `filter ${!selectedCategoryId ? "filter--active" : ""}`;
-  allBtn.textContent = "Todas las categorías";
+  allBtn.innerHTML = `<i data-lucide="grid"></i> Todas las categorías`;
   allBtn.onclick = () => {
     selectedCategoryId = "";
     renderCategoryFilters();
@@ -31,7 +31,7 @@ function renderCategoryFilters() {
     const btn = document.createElement("button");
     btn.type = "button";
     btn.className = `filter ${selectedCategoryId === c.id ? "filter--active" : ""}`;
-    btn.textContent = c.name;
+    btn.innerHTML = `<i data-lucide="tag"></i> ${c.name}`;
     btn.onclick = () => {
       selectedCategoryId = c.id;
       renderCategoryFilters();
@@ -39,6 +39,8 @@ function renderCategoryFilters() {
     };
     categoryFiltersNode.append(btn);
   });
+
+  if (window.lucide) window.lucide.createIcons();
 }
 
 function renderProducts() {
@@ -91,16 +93,17 @@ function renderProducts() {
     } else {
       const placeholder = document.createElement("div");
       placeholder.className = "product-card__image--placeholder";
-      placeholder.textContent = "Sin imagen";
+      placeholder.innerHTML = `<i data-lucide="image"></i> Sin imagen`;
       linkImg.append(placeholder);
     }
 
     imgContainer.append(linkImg);
 
     if (p.salePrice && p.salePrice < p.regularPrice) {
+      const discountPercent = Math.round(((p.regularPrice - p.salePrice) / p.regularPrice) * 100);
       const saleBadge = document.createElement("span");
       saleBadge.className = "product-card__badge product-card__badge--sale";
-      saleBadge.textContent = "Oferta";
+      saleBadge.innerHTML = `<i data-lucide="sparkles"></i> -${discountPercent}%`;
       imgContainer.append(saleBadge);
     }
 
@@ -150,7 +153,7 @@ function renderProducts() {
     const addCartBtn = document.createElement("button");
     addCartBtn.type = "button";
     addCartBtn.className = "button button--small button--outline";
-    addCartBtn.innerHTML = `🛒 Agregar`;
+    addCartBtn.innerHTML = `<i data-lucide="shopping-bag"></i> Añadir`;
     addCartBtn.onclick = () => {
       addToCart(p);
     };
@@ -158,7 +161,7 @@ function renderProducts() {
     const buyNowBtn = document.createElement("button");
     buyNowBtn.type = "button";
     buyNowBtn.className = "button button--small button--accent";
-    buyNowBtn.innerHTML = `⚡ Comprar`;
+    buyNowBtn.innerHTML = `<i data-lucide="zap"></i> Comprar`;
     buyNowBtn.onclick = () => {
       addToCart(p);
       window.location.assign("checkout.html");
@@ -170,6 +173,8 @@ function renderProducts() {
     card.append(imgContainer, body);
     grid.append(card);
   });
+
+  if (window.lucide) window.lucide.createIcons();
 }
 
 async function loadData() {

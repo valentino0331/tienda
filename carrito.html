@@ -6,18 +6,21 @@
   <meta name="description" content="Tu carrito de compras en Exclusive Shop.">
   <title>Tu Carrito | Exclusive Shop</title>
   <link rel="stylesheet" href="assets/css/styles.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
   <header class="site-header">
     <nav class="nav container" aria-label="Navegación Principal">
       <a class="brand" href="index.html">
-        <span class="brand-icon">✦</span>
+        <span class="brand-icon"><i data-lucide="sparkles"></i></span>
         Exclusive Shop
       </a>
       <div class="nav-links">
-        <a class="nav-link" href="catalogo.html">Catálogo</a>
+        <a class="nav-link" href="catalogo.html">
+          <i data-lucide="grid"></i> Catálogo
+        </a>
         <a class="cart-link" href="carrito.html">
-          🛒 Carrito
+          <i data-lucide="shopping-bag"></i> Carrito
           <span class="cart-count" data-cart-count hidden>0</span>
         </a>
       </div>
@@ -26,7 +29,7 @@
 
   <main class="page-section container">
     <header class="section-heading">
-      <p class="eyebrow">✦ Resumen de Selección</p>
+      <p class="eyebrow"><i data-lucide="shopping-bag"></i> Resumen de Selección</p>
       <h1>Tu Carrito de Compras</h1>
       <p class="lead">Revisa tus artículos elegidos antes de finalizar el pedido.</p>
     </header>
@@ -48,7 +51,7 @@
           <strong id="cart-discount-total" style="color: var(--color-success);">-S/ 0.00</strong>
         </div>
         <div class="summary-row">
-          <span>Costo de envío</span>
+          <span style="display:inline-flex;align-items:center;gap:0.3rem;"><i data-lucide="truck"></i> Envío</span>
           <strong style="color: var(--color-success);">¡GRATIS!</strong>
         </div>
 
@@ -59,10 +62,10 @@
 
         <div style="display:flex; flex-direction:column; gap:0.75rem; margin-top:1.5rem;">
           <a id="cart-checkout" class="button button--accent button--full" href="checkout.html">
-            Continuar al Pago ➔
+            Continuar al Pago <i data-lucide="arrow-right"></i>
           </a>
           <button id="cart-clear" class="button button--outline button--full" type="button">
-            Vaciar Carrito
+            <i data-lucide="trash-2"></i> Vaciar Carrito
           </button>
         </div>
       </aside>

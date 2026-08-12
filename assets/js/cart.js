@@ -24,6 +24,7 @@ export function syncCartCount() {
     void element.offsetWidth; // trigger reflow
     if (count > 0) element.classList.add("pulse");
   });
+  if (window.lucide) window.lucide.createIcons();
 }
 
 export function showToast(title, message = "Guardado en tu carrito de compras.") {
@@ -37,16 +38,22 @@ export function showToast(title, message = "Guardado en tu carrito de compras.")
   const toast = document.createElement("div");
   toast.className = "toast";
   toast.innerHTML = `
-    <div class="toast__icon">🛍️</div>
+    <div class="toast__icon">
+      <i data-lucide="check"></i>
+    </div>
     <div class="toast__content">
       <div class="toast__title">${title}</div>
       <div class="toast__message">${message}</div>
     </div>
-    <button class="toast__close" type="button">✕</button>
+    <button class="toast__close" type="button">
+      <i data-lucide="x"></i>
+    </button>
   `;
 
   toast.querySelector(".toast__close").onclick = () => toast.remove();
   container.append(toast);
+
+  if (window.lucide) window.lucide.createIcons();
 
   setTimeout(() => {
     toast.style.opacity = "0";
@@ -107,4 +114,7 @@ export function clearCart() {
   syncCartCount();
 }
 
-document.addEventListener("DOMContentLoaded", syncCartCount);
+document.addEventListener("DOMContentLoaded", () => {
+  syncCartCount();
+  if (window.lucide) window.lucide.createIcons();
+});

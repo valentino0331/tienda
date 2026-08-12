@@ -6,18 +6,21 @@
   <meta name="description" content="Exclusive Shop, tienda de perfumes y productos premium de lujo.">
   <title>Exclusive Shop | Selección Premium</title>
   <link rel="stylesheet" href="assets/css/styles.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
   <header class="site-header">
     <nav class="nav container" aria-label="Navegación Principal">
       <a class="brand" href="index.html">
-        <span class="brand-icon">✦</span>
+        <span class="brand-icon"><i data-lucide="sparkles"></i></span>
         Exclusive Shop
       </a>
       <div class="nav-links">
-        <a class="nav-link" href="catalogo.html">Catálogo</a>
+        <a class="nav-link" href="catalogo.html">
+          <i data-lucide="grid"></i> Catálogo
+        </a>
         <a class="cart-link" href="carrito.html">
-          🛒 Carrito
+          <i data-lucide="shopping-bag"></i> Carrito
           <span class="cart-count" data-cart-count hidden>0</span>
         </a>
       </div>
@@ -27,12 +30,23 @@
   <main>
     <section class="hero">
       <div class="container">
-        <p class="eyebrow">✦ Selección Exclusiva 2026</p>
+        <p class="eyebrow"><i data-lucide="sparkles"></i> Selección Exclusiva 2026</p>
         <h1>Detalles que dejan huella.</h1>
         <p class="lead">Explora nuestra colección curada de fragancias de lujo, perfumes y productos premium diseñados para resaltar tu presencia.</p>
-        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-          <a class="button button--accent" href="catalogo.html"> Ver Catálogo Completo ➔</a>
-          <a class="button button--outline" href="admin/login.html"> Acceso Admin</a>
+        
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem;">
+          <a class="button button--accent" href="catalogo.html">
+            Ver Catálogo Completo <i data-lucide="arrow-right"></i>
+          </a>
+          <a class="button button--outline" href="admin/login.html">
+            <i data-lucide="lock"></i> Acceso Admin
+          </a>
+        </div>
+
+        <div class="hero-chips">
+          <div class="chip"><i data-lucide="truck"></i> Envío Rápido a todo el Perú</div>
+          <div class="chip"><i data-lucide="shield-check"></i> Productos 100% Genuinos</div>
+          <div class="chip"><i data-lucide="check-circle-2"></i> Garantía de Satisfacción</div>
         </div>
       </div>
     </section>
@@ -46,6 +60,7 @@
   <script type="module">
     import { syncCartCount } from "./assets/js/cart.js";
     syncCartCount();
+    if (window.lucide) window.lucide.createIcons();
   </script>
 </body>
 </html>

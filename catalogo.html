@@ -6,18 +6,21 @@
   <meta name="description" content="Explora el catálogo exclusivo de fragancias y productos premium de Exclusive Shop.">
   <title>Catálogo Exclusivo | Exclusive Shop</title>
   <link rel="stylesheet" href="assets/css/styles.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
   <header class="site-header">
     <nav class="nav container" aria-label="Navegación Principal">
       <a class="brand" href="index.html">
-        <span class="brand-icon">✦</span>
+        <span class="brand-icon"><i data-lucide="sparkles"></i></span>
         Exclusive Shop
       </a>
       <div class="nav-links">
-        <a class="nav-link" href="catalogo.html">Catálogo</a>
+        <a class="nav-link" href="catalogo.html">
+          <i data-lucide="grid"></i> Catálogo
+        </a>
         <a class="cart-link" href="carrito.html">
-          🛒 Carrito
+          <i data-lucide="shopping-bag"></i> Carrito
           <span class="cart-count" data-cart-count hidden>0</span>
         </a>
       </div>
@@ -26,21 +29,26 @@
 
   <main class="page-section container">
     <header class="section-heading">
-      <p class="eyebrow">✦ Catálogo Exclusivo</p>
+      <p class="eyebrow"><i data-lucide="sparkles"></i> Catálogo Exclusivo</p>
       <h1>Nuestros Productos</h1>
       <p class="lead">Explora fragancias premium y artículos seleccionados con envío inmediato.</p>
     </header>
 
     <div class="catalog-controls">
       <div>
-        <p class="field" style="margin-bottom:0.5rem;font-weight:700;">Filtrar por categoría</p>
+        <p class="field" style="margin-bottom:0.5rem;font-weight:700;display:inline-flex;align-items:center;gap:0.4rem;">
+          <i data-lucide="sliders-horizontal"></i> Filtrar por categoría
+        </p>
         <div id="category-filters" class="filter-list">
           <span class="filter">Cargando categorías…</span>
         </div>
       </div>
       <label class="catalog-search">
         Buscar productos
-        <input id="catalog-search" type="search" placeholder="Buscar por nombre o descripción…">
+        <div class="search-input-wrapper">
+          <i data-lucide="search"></i>
+          <input id="catalog-search" type="search" placeholder="Buscar por nombre o descripción…">
+        </div>
       </label>
     </div>
 
