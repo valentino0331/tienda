@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "local": "demo-exclusive-shop",
+    "production": "exclusive-shop-debe0"
+  }
+}

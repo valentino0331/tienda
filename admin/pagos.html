@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Gestión administrativa de pagos de Exclusive Shop.">
+  <title>Pagos | Administración Exclusive Shop</title>
+  <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav container" aria-label="Administración">
+      <a class="brand" href="../index.html">Exclusive Shop</a>
+      <div class="nav-links">
+        <a href="dashboard.html">Dashboard</a>
+        <a href="categorias.html">Categorías</a>
+        <a href="productos.html">Productos</a>
+        <a href="inventario.html">Inventario</a>
+        <span>Pagos</span>
+        <a href="reportes.html">Reportes</a>
+        <span id="admin-identity" class="muted" hidden></span>
+        <button id="admin-logout" class="button" type="button">Salir</button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="admin-payments-content" class="admin-page container" hidden>
+    <header class="admin-toolbar">
+      <div>
+        <p class="eyebrow">Administración</p>
+        <h1>Pagos</h1>
+        <p class="muted">Revisa y verifica los pagos registrados para cada pedido.</p>
+      </div>
+      <a class="button button--outline" href="dashboard.html">Volver al dashboard</a>
+    </header>
+
+    <p id="payments-status" class="admin-status" role="status" hidden></p>
+
+    <section class="payment-filters card" aria-label="Filtros de pagos">
+      <label class="field">Buscar pedido o cliente
+        <input id="payments-search" type="search" placeholder="Número de pedido o cliente">
+      </label>
+      <label class="field">Estado
+        <select id="payments-status-filter">
+          <option value="">Todos</option>
+          <option value="pending">Pendiente</option>
+          <option value="pending_verification">Pendiente de verificación</option>
+          <option value="paid">Pagado</option>
+          <option value="failed">Rechazado</option>
+          <option value="refunded">Reembolsado</option>
+        </select>
+      </label>
+    </section>
+
+    <section aria-labelledby="payments-list-title">
+      <h2 id="payments-list-title">Pagos registrados</h2>
+      <div id="payments-list" class="admin-list" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <script src="../assets/js/app.js"></script>
+  <script type="module" src="../assets/js/firebase/admin-pagos.js"></script>
+</body>
+</html>

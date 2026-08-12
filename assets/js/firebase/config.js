@@ -10,3 +10,7 @@ export const firebaseConfig = {
   messagingSenderId: "494222202676",
   appId: "1:494222202676:web:0358445367eecc4f0f7761"
 };
+
+// Las site keys de reCAPTCHA Enterprise son públicas por diseño. Nunca
+// almacenar aquí secretos de reCAPTCHA, cuentas de servicio o credenciales.
+export const appCheckSiteKey = "6Le3xYItAAAAANJv_rn2nmzGJLaxHlENVtuf0jol";

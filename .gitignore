@@ -8,3 +8,5 @@ firebase-debug.log
 Thumbs.db
 .vscode/
 *.log
+
+.vercel

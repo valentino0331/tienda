@@ -15,13 +15,21 @@ service cloud.firestore {
 
     // Lectura pública limitada al catálogo que se implementará posteriormente.
     match /categories/{categoryId} {
-      allow read: if true;
+      allow read: if isAdmin() || resource.data.isActive == true;
       allow write: if isAdmin();
     }
 
     match /products/{productId} {
-      allow read: if true;
-      allow write: if isAdmin();
+      allow read: if isAdmin() || resource.data.isActive == true;
+      allow create, update: if isAdmin()
+        && request.resource.data.stock is int
+        && request.resource.data.stock >= 0;
+      allow delete: if isAdmin();
+    }
+
+    // Información privada de productos (costo): acceso exclusivo para administradores activos.
+    match /product_private/{productId} {
+      allow read, write: if isAdmin();
     }
 
     // Un usuario autenticado puede leer solo su propio perfil de rol.
@@ -49,7 +57,12 @@ service cloud.firestore {
     }
 
     match /inventory_movements/{movementId} {
-      allow read, write: if isAdmin();
+      allow read: if isAdmin();
+      // Las escrituras desde el panel deben quedar atribuidas al administrador autenticado.
+      // Las ventas de createOrder se ejecutan con Admin SDK y no dependen de estas reglas.
+      allow create: if isAdmin()
+        && request.resource.data.createdByUserId == request.auth.uid;
+      allow update, delete: if isAdmin();
     }
 
     match /expenses/{expenseId} {

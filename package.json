@@ -4,10 +4,30 @@
   "private": true,
   "description": "Tienda online de perfumes y productos premium.",
   "type": "module",
+  "engines": {
+    "node": "24.x"
+  },
   "scripts": {
-    "check:firebase": "node --check assets/js/firebase/config.js && node --check assets/js/firebase/firebase-init.js && node --check assets/js/firebase/user-admin.js && node --check assets/js/firebase/admin-guard.js && node --check assets/js/firebase/admin-login.js && node --check assets/js/firebase/admin-dashboard.js"
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "check:firebase": "node --check api/createOrder.js && node --check assets/js/cart.js && node --check assets/js/firebase/config.js && node --check assets/js/firebase/firebase-init.js && node --check assets/js/firebase/user-admin.js && node --check assets/js/firebase/admin-guard.js && node --check assets/js/firebase/admin-login.js && node --check assets/js/firebase/admin-dashboard.js && node --check assets/js/firebase/admin-categorias.js && node --check assets/js/firebase/admin-productos.js && node --check assets/js/firebase/admin-inventario.js && node --check assets/js/firebase/admin-pagos.js && node --check assets/js/firebase/admin-reportes.js && node --check assets/js/firebase/catalogo.js && node --check assets/js/firebase/producto.js && node --check assets/js/firebase/carrito.js && node --check assets/js/firebase/checkout.js",
+    "emulators": "firebase.cmd emulators:start --project demo-exclusive-shop",
+    "test:phase9": "firebase.cmd emulators:exec --project demo-exclusive-shop --only auth,firestore,functions \"node --test tests/phase9.test.js\"",
+    "test:rules": "firebase.cmd emulators:exec --project demo-exclusive-shop --only auth,firestore \"node --test tests/phase9.test.js --test-name-pattern=Firestore\\ Rules\"",
+    "test:functions": "firebase.cmd emulators:exec --project demo-exclusive-shop --only firestore,functions \"node --test tests/phase9.test.js --test-name-pattern=createOrder\""
+    ,"test:vercel": "firebase.cmd emulators:exec --project demo-exclusive-shop --only auth,firestore \"node --test tests/vercel-endpoint.test.js\""
   },
   "dependencies": {
-    "firebase": "^12.17.1"
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "firebase": "^12.17.1",
+    "firebase-admin": "^13.10.0",
+    "jsonwebtoken": "^9.0.2",
+    "pg": "^8.13.3"
+  },
+  "devDependencies": {
+    "@firebase/rules-unit-testing": "^5.0.1"
   }
 }

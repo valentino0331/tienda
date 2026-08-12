@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inventario | Administración Exclusive Shop</title>
+  <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav container" aria-label="Administración">
+      <a class="brand" href="../index.html">Exclusive Shop</a>
+      <div class="nav-links">
+        <a href="dashboard.html">Dashboard</a>
+        <a href="categorias.html">Categorías</a>
+        <a href="productos.html">Productos</a>
+        <span>Inventario</span>
+        <a href="pagos.html">Pagos</a>
+        <a href="reportes.html">Reportes</a>
+        <span id="admin-identity" class="muted" hidden></span>
+        <button id="admin-logout" class="button" type="button">Salir</button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="admin-inventory-content" class="admin-page container" hidden>
+    <header class="admin-toolbar">
+
+      
+      <div>
+        <p class="eyebrow">Administración</p>
+        <h1>Inventario</h1>
+        <p class="muted">Gestiona el stock y los movimientos de inventario.</p>
+      </div>
+      <a class="button button--outline" href="dashboard.html">Volver al dashboard</a>
+    </header>
+
+    <p id="inventory-status" class="admin-status" role="status" hidden></p>
+
+    <!-- Filters -->
+    <div class="inventory-filters" style="display:grid;gap:1rem;grid-template-columns:1fr 1fr 1fr;margin-bottom:1.5rem;">
+      <label class="field">Buscar producto
+        <input id="inventory-search" type="search" placeholder="Nombre, marca o SKU…">
+      </label>
+      <label class="field">Categoría
+        <select id="inventory-category-filter">
+          <option value="">Todas</option>
+        </select>
+      </label>
+      <label class="field">Estado de stock
+        <select id="inventory-stock-filter">
+          <option value="">Todos</option>
+          <option value="normal">Normal</option>
+          <option value="low">Stock bajo</option>
+          <option value="out">Sin stock</option>
+        </select>
+      </label>
+    </div>
+
+    <!-- Product inventory list -->
+    <section>
+      <h2>Productos</h2>
+      <div id="inventory-list" class="admin-list" aria-live="polite"></div>
+    </section>
+
+    <!-- Stock adjustment form -->
+    <div id="adjustment-form" class="admin-form card" style="margin-top:1.5rem;" hidden>
+      <h2>Ajuste de stock</h2>
+      <p id="adjustment-product-name" style="font-weight:700;margin-bottom:1rem;"></p>
+      <input id="adjustment-product-id" type="hidden">
+      <div class="form-grid">
+        <label class="field">Tipo de ajuste
+          <select id="adjustment-type" required>
+            <option value="adjustment_in">Entrada (aumentar stock)</option>
+            <option value="adjustment_out">Salida (disminuir stock)</option>
+          </select>
+        </label>
+        <label class="field">Cantidad
+          <input id="adjustment-quantity" type="number" min="1" step="1" required>
+        </label>
+        <label class="field">Notas (opcional)
+          <textarea id="adjustment-notes" maxlength="500" placeholder="Motivo del ajuste…"></textarea>
+        </label>
+        <div class="admin-actions">
+          <button id="adjustment-submit" class="button" type="button">Registrar ajuste</button>
+          <button id="adjustment-cancel" class="button button--outline" type="button">Cancelar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Movements history -->
+    <section style="margin-top:2rem;">
+      <h2>Historial de movimientos</h2>
+      <div id="movements-list" class="admin-list" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <script src="../assets/js/app.js"></script>
+  <script type="module" src="../assets/js/firebase/admin-inventario.js"></script>
+</body>
+</html>

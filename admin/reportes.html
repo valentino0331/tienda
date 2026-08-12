@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="es">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="Reportes administrativos de Exclusive Shop."><title>Reportes | Administración Exclusive Shop</title><link rel="stylesheet" href="../assets/css/styles.css"></head>
+<body>
+  <header class="site-header"><nav class="nav container" aria-label="Administración"><a class="brand" href="../index.html">Exclusive Shop</a><div class="nav-links"><a href="dashboard.html">Dashboard</a><a href="categorias.html">Categorías</a><a href="productos.html">Productos</a><a href="inventario.html">Inventario</a><a href="pagos.html">Pagos</a><span>Reportes</span><span id="admin-identity" class="muted" hidden></span><button id="admin-logout" class="button" type="button">Salir</button></div></nav></header>
+  <main id="admin-reports-content" class="admin-page container" hidden>
+    <header class="admin-toolbar"><div><p class="eyebrow">Administración</p><h1>Reportes</h1><p class="muted">Ventas y operación basadas en snapshots históricos.</p></div><a class="button button--outline" href="dashboard.html">Volver al dashboard</a></header>
+    <p id="reports-status" class="admin-status" role="status" hidden></p>
+    <section class="report-period card" aria-label="Filtro de período"><label class="field">Período<select id="reports-period"><option value="all">Todo el historial</option><option value="today">Hoy</option><option value="7d">Últimos 7 días</option><option value="30d">Últimos 30 días</option><option value="this-month">Este mes</option><option value="last-month">Mes anterior</option><option value="custom">Personalizado</option></select></label><div id="reports-custom-dates" class="form-grid form-grid--two" hidden><label class="field">Desde<input id="reports-date-start" type="date"></label><label class="field">Hasta<input id="reports-date-end" type="date"></label></div></section>
+    <section class="report-kpis" aria-label="Resumen del período"><article class="metric-card card"><p>Ventas</p><strong id="report-sales">Cargando…</strong></article><article class="metric-card card"><p>Ganancia bruta</p><strong id="report-profit">Cargando…</strong></article><article class="metric-card card"><p>Pedidos</p><strong id="report-orders">Cargando…</strong></article><article class="metric-card card"><p>Total cobrado</p><strong id="report-paid-total">Cargando…</strong></article></section>
+    <section class="report-grid">
+      <article class="card report-card"><h2>Pedidos por estado</h2><div id="report-order-status" class="summary-list"></div></article>
+      <article class="card report-card"><h2>Métodos de pago utilizados</h2><div id="report-payment-methods" class="summary-list"></div></article>
+      <article class="card report-card"><h2>Productos más vendidos</h2><div id="report-top-products" class="report-ranking"></div></article>
+      <article class="card report-card"><h2>Categorías con más ventas</h2><div id="report-top-categories" class="report-ranking"></div></article>
+      <article class="card report-card"><h2>Productos con stock bajo</h2><div id="report-low-stock" class="report-ranking"></div></article>
+      <article class="card report-card"><h2>Productos sin stock</h2><div id="report-out-stock" class="report-ranking"></div></article>
+    </section>
+  </main>
+  <script src="../assets/js/app.js"></script><script type="module" src="../assets/js/firebase/admin-reportes.js"></script>
+</body>
+</html>

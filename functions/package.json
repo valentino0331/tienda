@@ -1,0 +1,17 @@
+{
+  "name": "exclusive-shop-functions",
+  "description": "Cloud Functions para Exclusive Shop",
+  "type": "module",
+  "scripts": {
+    "check": "node --check index.js"
+  },
+  "engines": {
+    "node": "20"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "firebase-admin": "^13.2.0",
+    "firebase-functions": "^6.3.2"
+  },
+  "private": true
+}
