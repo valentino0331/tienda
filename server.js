@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import path from 'path';
+import fs from 'fs';
 import { fileURLToPath } from 'url';
 import pkg from 'pg';
 import bcrypt from 'bcryptjs';
@@ -547,12 +548,32 @@ app.get('/api/admin/metrics', authenticateToken, async (req, res) => {
   }
 });
 
-// Static File Server
-app.use(express.static(__dirname));
+// Static File Server with extension resolution
+app.use(express.static(__dirname, {
+  extensions: ['html', 'htm']
+}));
 
-// Serve index.html for root route
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
+// Fallback router for static HTML pages
+app.get('*', (req, res) => {
+  if (req.path.startsWith('/api/')) {
+    return res.status(404).json({ error: 'Endpoint API no encontrado' });
+  }
+
+  const requestedPath = req.path === '/' ? '/index.html' : req.path;
+  const filePath = path.join(__dirname, requestedPath);
+  const htmlPath = filePath.endsWith('.html') ? filePath : `${filePath}.html`;
+
+  try {
+    if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
+      return res.sendFile(filePath);
+    } else if (fs.existsSync(htmlPath) && fs.statSync(htmlPath).isFile()) {
+      return res.sendFile(htmlPath);
+    } else {
+      return res.sendFile(path.join(__dirname, 'index.html'));
+    }
+  } catch (e) {
+    return res.sendFile(path.join(__dirname, 'index.html'));
+  }
 });
 
 // Start Server
