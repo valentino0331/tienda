@@ -1,4 +1,6 @@
 import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 import { firebaseConfig } from "./config.js";
 
 const requiredConfigKeys = ["apiKey", "authDomain", "projectId", "appId"];
@@ -18,3 +20,5 @@ const hasValidFirebaseConfig =
  * Storage y App Check mediante los imports modulares correspondientes.
  */
 export const app = hasValidFirebaseConfig ? initializeApp(firebaseConfig) : null;
+export const auth = app ? getAuth(app) : null;
+export const db = app ? getFirestore(app) : null;

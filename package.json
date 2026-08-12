@@ -5,7 +5,7 @@
   "description": "Tienda online de perfumes y productos premium.",
   "type": "module",
   "scripts": {
-    "check:firebase": "node --check assets/js/firebase/config.js && node --check assets/js/firebase/firebase-init.js"
+    "check:firebase": "node --check assets/js/firebase/config.js && node --check assets/js/firebase/firebase-init.js && node --check assets/js/firebase/user-admin.js && node --check assets/js/firebase/admin-guard.js && node --check assets/js/firebase/admin-login.js && node --check assets/js/firebase/admin-dashboard.js"
   },
   "dependencies": {
     "firebase": "^12.17.1"
