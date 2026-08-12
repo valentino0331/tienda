@@ -16,6 +16,9 @@
         Exclusive Shop
       </a>
       <div class="nav-links">
+        <a class="nav-link" href="index.html">
+          <i data-lucide="home"></i> Inicio
+        </a>
         <a class="nav-link" href="catalogo.html">
           <i data-lucide="grid"></i> Catálogo
         </a>
@@ -28,9 +31,9 @@
   </header>
 
   <main class="page-section container">
-    <header class="section-heading">
-      <p class="eyebrow"><i data-lucide="shopping-bag"></i> Resumen de Selección</p>
-      <h1>Tu Carrito de Compras</h1>
+    <header class="section-heading" style="margin-bottom: 2.5rem;">
+      <span class="eyebrow"><i data-lucide="shopping-bag"></i> Resumen de Selección</span>
+      <h1 style="font-size: 2.4rem;">Tu Carrito de Compras</h1>
       <p class="lead">Revisa tus artículos elegidos antes de finalizar el pedido.</p>
     </header>
 
@@ -40,7 +43,7 @@
       </section>
 
       <aside id="cart-summary" class="card order-summary" aria-label="Resumen de pago" hidden>
-        <h2 style="font-size: 1.25rem; margin-bottom: 1.25rem;">Resumen de compra</h2>
+        <h2 style="font-size: 1.3rem; margin-bottom: 1.25rem;">Resumen de compra</h2>
         
         <div class="summary-row">
           <span>Subtotal</span>
@@ -57,10 +60,14 @@
 
         <div class="summary-total">
           <span>Total a pagar</span>
-          <strong id="cart-total">S/ 0.00</strong>
+          <strong id="cart-total" style="color:var(--color-accent);">S/ 0.00</strong>
         </div>
 
-        <div style="display:flex; flex-direction:column; gap:0.75rem; margin-top:1.5rem;">
+        <div style="background: linear-gradient(135deg, #fdf4ff 0%, #f5f3ff 100%); border:1px solid var(--color-yape); padding:0.85rem; border-radius:var(--radius-sm); margin-top:1rem; text-align:center; font-size:0.82rem; color:var(--color-yape); font-weight:700;">
+          💜 ¡Disponible pago rápido con Yape y Plin!
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:0.75rem; margin-top:1.25rem;">
           <a id="cart-checkout" class="button button--accent button--full" href="checkout.html">
             Continuar al Pago <i data-lucide="arrow-right"></i>
           </a>
@@ -72,8 +79,10 @@
     </div>
   </main>
 
-  <footer class="footer container">
-    © <span data-current-year></span> Exclusive Shop. Todos los derechos reservados.
+  <footer class="footer">
+    <div class="container footer-bottom">
+      <div>© <span data-current-year></span> Exclusive Shop. Todos los derechos reservados.</div>
+    </div>
   </footer>
 
   <script src="assets/js/app.js"></script>

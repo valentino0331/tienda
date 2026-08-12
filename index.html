@@ -3,12 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Exclusive Shop, tienda de perfumes y productos premium de lujo.">
-  <title>Exclusive Shop | Selección Premium</title>
+  <meta name="description" content="Exclusive Shop | Tienda online de perfumes de lujo, fragancias niche y productos premium de alta gama en Perú.">
+  <title>Exclusive Shop | Selección Premium & Fragancias de Lujo</title>
   <link rel="stylesheet" href="assets/css/styles.css">
   <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
+  <!-- Navigation Header -->
   <header class="site-header">
     <nav class="nav container" aria-label="Navegación Principal">
       <a class="brand" href="index.html">
@@ -16,6 +17,9 @@
         Exclusive Shop
       </a>
       <div class="nav-links">
+        <a class="nav-link active" href="index.html">
+          <i data-lucide="home"></i> Inicio
+        </a>
         <a class="nav-link" href="catalogo.html">
           <i data-lucide="grid"></i> Catálogo
         </a>
@@ -28,39 +32,398 @@
   </header>
 
   <main>
-    <section class="hero">
-      <div class="container">
-        <p class="eyebrow"><i data-lucide="sparkles"></i> Selección Exclusiva 2026</p>
-        <h1>Detalles que dejan huella.</h1>
-        <p class="lead">Explora nuestra colección curada de fragancias de lujo, perfumes y productos premium diseñados para resaltar tu presencia.</p>
-        
-        <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem;">
-          <a class="button button--accent" href="catalogo.html">
-            Ver Catálogo Completo <i data-lucide="arrow-right"></i>
-          </a>
-          <a class="button button--outline" href="admin/login.html">
-            <i data-lucide="lock"></i> Acceso Admin
-          </a>
+    <!-- Hero Section Carousel -->
+    <section class="container">
+      <div class="hero-carousel-container" id="hero-carousel">
+        <div class="hero-carousel-track">
+          <!-- Slide 1: Perfumes -->
+          <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=1600&q=80');">
+            <div class="hero-slide-content">
+              <span class="yape-badge" style="background:var(--color-accent-gradient);"><i data-lucide="sparkles"></i> Colección Nicho 2026</span>
+              <h1 class="hero-slide-title">Fragancias que marcan tu presencia.</h1>
+              <p class="hero-slide-desc">Explora el arte de la alta perfumería con marcas de prestigio mundial como Dior, Chanel, Creed y Baccarat Rouge.</p>
+              <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                <a class="button button--accent" href="catalogo.html">
+                  Explorar Catálogo <i data-lucide="arrow-right"></i>
+                </a>
+                <button type="button" class="button button--yape" onclick="openYapeModal()">
+                  <i data-lucide="qr-code"></i> Paga con Yape / Plin
+                </button>
+              </div>
+            </div>
+            <div class="hero-slide-image-wrapper">
+              <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=800&q=80" alt="Sauvage Dior">
+            </div>
+          </div>
+
+          <!-- Slide 2: Skincare 24K -->
+          <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=1600&q=80');">
+            <div class="hero-slide-content">
+              <span class="yape-badge" style="background:linear-gradient(135deg, #10b981, #059669);"><i data-lucide="shield-check"></i> Cuidado Facial Elixir</span>
+              <h1 class="hero-slide-title">Tratamientos con Partículas de Oro 24K.</h1>
+              <p class="hero-slide-desc">Fórmulas revolucionarias regeneradoras para una piel radiante, joven e inigualable. Resultados visibles desde la primera aplicación.</p>
+              <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                <a class="button button--accent" href="catalogo.html">
+                  Ver Productos Elixir <i data-lucide="sparkles"></i>
+                </a>
+              </div>
+            </div>
+            <div class="hero-slide-image-wrapper">
+              <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=800&q=80" alt="Serum Elixir">
+            </div>
+          </div>
+
+          <!-- Slide 3: Promociones Yape -->
+          <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?auto=format&fit=crop&w=1600&q=80');">
+            <div class="hero-slide-content">
+              <span class="yape-badge"><i data-lucide="zap"></i> Envíos Inmediatos a Todo el Perú</span>
+              <h1 class="hero-slide-title">Descuentos VIP Exclusivos en Web.</h1>
+              <p class="hero-slide-desc">Aprovecha hasta 20% OFF en productos seleccionados. Pagos ultrarrápidos y seguros con Yape, Plin y tarjetas.</p>
+              <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                <a class="button button--accent" href="catalogo.html">
+                  Comprar con Descuento <i data-lucide="arrow-right"></i>
+                </a>
+              </div>
+            </div>
+            <div class="hero-slide-image-wrapper">
+              <img src="https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?auto=format&fit=crop&w=800&q=80" alt="Tom Ford Perfume">
+            </div>
+          </div>
         </div>
 
-        <div class="hero-chips">
-          <div class="chip"><i data-lucide="truck"></i> Envío Rápido a todo el Perú</div>
-          <div class="chip"><i data-lucide="shield-check"></i> Productos 100% Genuinos</div>
-          <div class="chip"><i data-lucide="check-circle-2"></i> Garantía de Satisfacción</div>
+        <!-- Arrows -->
+        <button class="carousel-btn carousel-btn--prev" aria-label="Slide anterior" id="hero-prev"><i data-lucide="chevron-left"></i></button>
+        <button class="carousel-btn carousel-btn--next" aria-label="Slide siguiente" id="hero-next"><i data-lucide="chevron-right"></i></button>
+
+        <!-- Dots -->
+        <div class="carousel-dots" id="hero-dots"></div>
+      </div>
+    </section>
+
+    <!-- Trust Features Chips -->
+    <section class="container" style="margin-bottom: 3.5rem;">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem;">
+        <div class="card" style="padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 1rem;">
+          <div style="width: 44px; height: 44px; border-radius: 12px; background: rgba(217, 119, 6, 0.12); color: var(--color-accent); display: grid; place-items: center; flex-shrink: 0;">
+            <i data-lucide="truck" style="width:24px;height:24px;"></i>
+          </div>
+          <div>
+            <h4 style="font-size:1rem;">Envío Express Perú</h4>
+            <p style="font-size:0.82rem; color:var(--color-muted);">Despachos inmediatos a Lima y Provincias</p>
+          </div>
+        </div>
+
+        <div class="card" style="padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 1rem;">
+          <div style="width: 44px; height: 44px; border-radius: 12px; background: rgba(116, 34, 132, 0.12); color: var(--color-yape); display: grid; place-items: center; flex-shrink: 0;">
+            <i data-lucide="qr-code" style="width:24px;height:24px;"></i>
+          </div>
+          <div>
+            <h4 style="font-size:1rem;">Pago Fácil Yape / Plin</h4>
+            <p style="font-size:0.82rem; color:var(--color-muted);">Paga al instante escaneando el código QR</p>
+          </div>
+        </div>
+
+        <div class="card" style="padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 1rem;">
+          <div style="width: 44px; height: 44px; border-radius: 12px; background: rgba(16, 185, 129, 0.12); color: var(--color-success); display: grid; place-items: center; flex-shrink: 0;">
+            <i data-lucide="shield-check" style="width:24px;height:24px;"></i>
+          </div>
+          <div>
+            <h4 style="font-size:1rem;">Garantía 100% Genuino</h4>
+            <p style="font-size:0.82rem; color:var(--color-muted);">Productos importados y certificados</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURED PRODUCTS CAROUSEL SLIDER -->
+    <section class="container products-carousel-section">
+      <div class="section-header-row">
+        <div>
+          <span class="eyebrow"><i data-lucide="sparkles"></i> Los Más Deseados</span>
+          <h2 style="font-size: 2rem;">Productos Destacados</h2>
+        </div>
+        <div style="display: flex; gap: 0.5rem;">
+          <button class="button button--outline button--small" id="feat-prev" style="min-height:40px; width:40px; padding:0;"><i data-lucide="chevron-left"></i></button>
+          <button class="button button--outline button--small" id="feat-next" style="min-height:40px; width:40px; padding:0;"><i data-lucide="chevron-right"></i></button>
+        </div>
+      </div>
+
+      <div class="products-slider-viewport">
+        <div class="products-slider-track" id="featured-slider-track">
+          <!-- Dynamic products loaded via JS -->
+          <div class="card" style="padding: 2rem; text-align: center; width: 100%;">Cargando productos destacados...</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- YAPE & PLIN INTEGRATION BANNER -->
+    <section class="container">
+      <div class="yape-banner-card">
+        <div style="max-width: 600px;">
+          <span class="yape-badge"><i data-lucide="qr-code"></i> Método de Pago Rápido</span>
+          <h2 style="font-size: 2.2rem; color: white; margin-bottom: 0.75rem;">¡Paga al Instante con Yape o Plin!</h2>
+          <p style="font-size: 1.05rem; opacity: 0.9; margin-bottom: 1.5rem;">
+            Realiza tu compra sin comisiones adicionales. Escanea nuestro QR directo o yapea a nuestro número oficial de atención inmediata.
+          </p>
+          <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+            <button type="button" class="button button--accent" onclick="openYapeModal()" style="background: white; color: var(--color-yape);">
+              <i data-lucide="maximize-2"></i> Ver Código QR de Yape
+            </button>
+            <a class="button button--outline" href="catalogo.html" style="color: white; border-color: rgba(255,255,255,0.4);">
+              <i data-lucide="shopping-bag"></i> Ir a la Tienda
+            </a>
+          </div>
+        </div>
+
+        <div class="yape-qr-box">
+          <div style="font-size: 0.78rem; font-weight: 800; text-transform: uppercase; color: var(--color-yape); margin-bottom: 0.4rem;">
+            Escanea y Yapea
+          </div>
+          <!-- Dynamic Yape SVG QR Code -->
+          <div id="yape-mini-qr" style="cursor: pointer;" onclick="openYapeModal()" title="Hacer clic para ampliar">
+            <!-- Inline SVG generated QR -->
+          </div>
+          <div class="yape-number-pill">
+            <span>987 654 321</span>
+            <button class="yape-copy-btn" onclick="copyYapeNumber()" title="Copiar número"><i data-lucide="copy"></i></button>
+          </div>
+          <p style="font-size: 0.75rem; color: var(--color-muted); margin-top: 0.4rem;">Titular: Exclusive Shop Peru</p>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="footer container">
-    © <span data-current-year></span> Exclusive Shop. Todos los derechos reservados.
+  <!-- YAPE & PLIN FULLSCREEN MODAL OVERLAY -->
+  <div class="modal-overlay" id="yape-modal">
+    <div class="modal-card" style="text-align: center;">
+      <button class="modal-close" onclick="closeYapeModal()"><i data-lucide="x"></i></button>
+      
+      <div class="yape-badge" style="background: var(--color-yape-gradient); color: white; font-size: 0.9rem; margin-bottom: 1rem;">
+        <i data-lucide="qr-code"></i> Código QR Yape / Plin
+      </div>
+      
+      <h2 style="font-size: 1.6rem; margin-bottom: 0.4rem; color: var(--color-yape);">Exclusive Shop Perú</h2>
+      <p style="font-size: 0.9rem; color: var(--color-muted); margin-bottom: 1.25rem;">Escanea desde tu app Yape o Plin para confirmar tu pedido</p>
+      
+      <div style="background: #f8fafc; border: 2px dashed var(--color-yape); border-radius: var(--radius); padding: 1.5rem; display: inline-block; margin-bottom: 1.25rem;">
+        <div id="yape-modal-qr-container"></div>
+      </div>
+
+      <div style="background: #f1f5f9; padding: 0.85rem 1.2rem; border-radius: 999px; display: flex; align-items: center; justify-content: space-between; max-width: 340px; margin: 0 auto 1.25rem;">
+        <span style="font-weight: 700; font-size: 1.1rem; color: var(--color-yape);">📱 987 654 321</span>
+        <button class="button button--small button--accent" onclick="copyYapeNumber()" style="padding: 0.35rem 0.85rem;">
+          <i data-lucide="copy"></i> Copiar
+        </button>
+      </div>
+
+      <p style="font-size: 0.82rem; color: var(--color-muted); line-height: 1.4;">
+        1. Abre tu app Yape o Plin en tu smartphone.<br>
+        2. Selecciona <strong>Escanear QR</strong> y enfoca este código.<br>
+        3. Digita el monto de tu compra e ingresa el N° de Operación en el checkout.
+      </p>
+    </div>
+  </div>
+
+  <!-- Luxury Footer -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <a class="brand" href="index.html" style="margin-bottom: 1rem;">
+          <span class="brand-icon"><i data-lucide="sparkles"></i></span>
+          Exclusive Shop
+        </a>
+        <p style="font-size: 0.9rem; color: var(--color-muted); margin-top: 0.75rem;">
+          Tu tienda de confianza para perfumes de nicho, fragancias exclusivas y productos de cuidado personal premium en Perú.
+        </p>
+      </div>
+
+      <div>
+        <h4 class="footer-title">Navegación</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="catalogo.html">Catálogo Completo</a></li>
+          <li><a href="carrito.html">Mi Carrito</a></li>
+          <li><a href="admin/login.html">Acceso Administrador</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer-title">Métodos de Pago</h4>
+        <ul class="footer-links">
+          <li><span style="color:var(--color-yape); font-weight:700;">💜 Yape</span></li>
+          <li><span style="color:var(--color-plin); font-weight:700;">🩵 Plin</span></li>
+          <li><span>💳 Tarjetas Visa / Mastercard</span></li>
+          <li><span>🏦 Transferencia BCP / Interbank</span></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer-title">Atención al Cliente</h4>
+        <p style="font-size: 0.88rem; color: var(--color-muted); margin-bottom: 0.5rem;">📱 WhatsApp: 987 654 321</p>
+        <p style="font-size: 0.88rem; color: var(--color-muted); margin-bottom: 0.5rem;">✉️ contacto@exclusiveshop.com</p>
+        <p style="font-size: 0.88rem; color: var(--color-muted);">📍 Lima, Perú</p>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <div>© <span data-current-year></span> Exclusive Shop. Todos los derechos reservados.</div>
+      <div style="display:flex; gap:1rem;">
+        <span>Términos y Condiciones</span>
+        <span>Política de Privacidad</span>
+      </div>
+    </div>
   </footer>
-  
+
   <script src="assets/js/app.js"></script>
+  <script type="module" src="assets/js/cart.js"></script>
   <script type="module">
-    import { syncCartCount } from "./assets/js/cart.js";
+    import { syncCartCount, addToCart } from "./assets/js/cart.js";
+
     syncCartCount();
     if (window.lucide) window.lucide.createIcons();
+
+    // SVG QR Code Generator for Yape / Plin
+    function generateYapeSVG(size = 180) {
+      return `
+        <svg width="${size}" height="${size}" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="200" height="200" rx="16" fill="white"/>
+          <path d="M20 20H80V80H20V20Z" stroke="#742284" stroke-width="12" fill="white"/>
+          <rect x="36" y="36" width="28" height="28" fill="#742284"/>
+          
+          <path d="M120 20H180V80H120V20Z" stroke="#742284" stroke-width="12" fill="white"/>
+          <rect x="136" y="36" width="28" height="28" fill="#742284"/>
+          
+          <path d="M20 120H80V180H20V120Z" stroke="#742284" stroke-width="12" fill="white"/>
+          <rect x="36" y="136" width="28" height="28" fill="#742284"/>
+          
+          <rect x="100" y="20" width="12" height="12" fill="#742284"/>
+          <rect x="100" y="44" width="12" height="24" fill="#00D2D3"/>
+          <rect x="20" y="94" width="24" height="12" fill="#742284"/>
+          <rect x="56" y="94" width="36" height="12" fill="#9C27B0"/>
+          
+          <rect x="100" y="100" width="20" height="20" fill="#742284"/>
+          <rect x="130" y="100" width="30" height="12" fill="#742284"/>
+          <rect x="170" y="100" width="10" height="40" fill="#00D2D3"/>
+          <rect x="100" y="130" width="20" height="50" fill="#9C27B0"/>
+          <rect x="130" y="130" width="30" height="20" fill="#742284"/>
+          <rect x="140" y="160" width="40" height="20" fill="#742284"/>
+          
+          <rect x="80" y="80" width="40" height="40" rx="10" fill="#742284"/>
+          <text x="100" y="105" font-family="Outfit, sans-serif" font-weight="900" font-size="16" fill="white" text-anchor="middle">Y</text>
+        </svg>
+      `;
+    }
+
+    document.getElementById('yape-mini-qr').innerHTML = generateYapeSVG(180);
+    document.getElementById('yape-modal-qr-container').innerHTML = generateYapeSVG(240);
+
+    window.openYapeModal = function() {
+      document.getElementById('yape-modal').classList.add('active');
+    };
+    window.closeYapeModal = function() {
+      document.getElementById('yape-modal').classList.remove('active');
+    };
+    window.copyYapeNumber = function() {
+      navigator.clipboard.writeText('987654321');
+      alert('¡Número de Yape (987654321) copiado al portapapeles!');
+    };
+
+    // Hero Carousel Script
+    const heroTrack = document.querySelector('.hero-carousel-track');
+    const heroSlides = document.querySelectorAll('.hero-slide');
+    const heroPrev = document.getElementById('hero-prev');
+    const heroNext = document.getElementById('hero-next');
+    const heroDotsContainer = document.getElementById('hero-dots');
+    let currentHeroIndex = 0;
+    let heroAutoTimer = null;
+
+    heroSlides.forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.className = `carousel-dot ${i === 0 ? 'active' : ''}`;
+      dot.addEventListener('click', () => goToHeroSlide(i));
+      heroDotsContainer.appendChild(dot);
+    });
+
+    function goToHeroSlide(index) {
+      currentHeroIndex = (index + heroSlides.length) % heroSlides.length;
+      heroTrack.style.transform = `translateX(-${currentHeroIndex * 100}%)`;
+      document.querySelectorAll('.carousel-dot').forEach((dot, i) => {
+        dot.classList.toggle('active', i === currentHeroIndex);
+      });
+    }
+
+    function startHeroAuto() {
+      stopHeroAuto();
+      heroAutoTimer = setInterval(() => goToHeroSlide(currentHeroIndex + 1), 6000);
+    }
+    function stopHeroAuto() {
+      if (heroAutoTimer) clearInterval(heroAutoTimer);
+    }
+
+    heroPrev?.addEventListener('click', () => { goToHeroSlide(currentHeroIndex - 1); startHeroAuto(); });
+    heroNext?.addEventListener('click', () => { goToHeroSlide(currentHeroIndex + 1); startHeroAuto(); });
+
+    document.getElementById('hero-carousel').addEventListener('mouseenter', stopHeroAuto);
+    document.getElementById('hero-carousel').addEventListener('mouseleave', startHeroAuto);
+    startHeroAuto();
+
+    // Featured Products Slider Script
+    async function loadFeaturedSlider() {
+      const track = document.getElementById('featured-slider-track');
+      try {
+        const res = await fetch('/api/products');
+        if (!res.ok) throw new Error('Error al cargar productos');
+        const prods = await res.json();
+        
+        track.innerHTML = '';
+        prods.slice(0, 8).forEach(p => {
+          const card = document.createElement('article');
+          card.className = 'product-card';
+          card.innerHTML = `
+            <div class="product-card__image-container">
+              <a href="producto.html?id=${p.id}">
+                <img class="product-card__image" src="${p.image || 'https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=800&q=80'}" alt="${p.name}">
+              </a>
+              ${p.salePrice ? `<span class="product-card__badge product-card__badge--sale"><i data-lucide="sparkles"></i> OFERTA</span>` : ''}
+            </div>
+            <div class="product-card__body">
+              <h3 class="product-card__title"><a href="producto.html?id=${p.id}">${p.name}</a></h3>
+              <p class="product-card__description">${p.description}</p>
+              <div class="product-card__price-row">
+                <span class="product-card__price">S/ ${p.price.toFixed(2)}</span>
+                ${p.salePrice ? `<span class="product-card__regular-price">S/ ${p.regularPrice.toFixed(2)}</span>` : ''}
+              </div>
+              <div class="product-card__actions">
+                <button type="button" class="button button--small button--outline add-btn"><i data-lucide="shopping-bag"></i> Añadir</button>
+                <a class="button button--small button--accent" href="checkout.html"><i data-lucide="zap"></i> Comprar</a>
+              </div>
+            </div>
+          `;
+
+          card.querySelector('.add-btn').onclick = () => addToCart(p);
+          track.appendChild(card);
+        });
+
+        if (window.lucide) window.lucide.createIcons();
+
+      } catch (err) {
+        track.innerHTML = `<div style="padding:2rem; text-align:center;">No se pudieron cargar los productos.</div>`;
+      }
+    }
+
+    let featPosition = 0;
+    const featTrack = document.getElementById('featured-slider-track');
+    document.getElementById('feat-prev').addEventListener('click', () => {
+      featPosition = Math.max(featPosition - 300, 0);
+      featTrack.style.transform = `translateX(-${featPosition}px)`;
+    });
+    document.getElementById('feat-next').addEventListener('click', () => {
+      const maxScroll = featTrack.scrollWidth - featTrack.clientWidth;
+      featPosition = Math.min(featPosition + 300, maxScroll > 0 ? maxScroll : 600);
+      featTrack.style.transform = `translateX(-${featPosition}px)`;
+    });
+
+    loadFeaturedSlider();
   </script>
 </body>
 </html>

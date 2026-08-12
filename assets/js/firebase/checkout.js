@@ -9,13 +9,16 @@ const checkoutEmpty = document.querySelector("#checkout-empty"),
   phoneInput = document.querySelector("#checkout-phone"),
   emailInput = document.querySelector("#checkout-email"),
   addressInput = document.querySelector("#checkout-address"),
+  yapeCodeInput = document.querySelector("#checkout-yape-code"),
   checkoutItemsNode = document.querySelector("#checkout-items"),
   regularTotalNode = document.querySelector("#checkout-regular-total"),
   totalNode = document.querySelector("#checkout-total"),
   statusNode = document.querySelector("#checkout-status"),
   successNumberNode = document.querySelector("#success-order-number"),
   successTotalNode = document.querySelector("#success-order-total"),
-  successPaymentNode = document.querySelector("#success-payment-method");
+  successPaymentNode = document.querySelector("#success-payment-method"),
+  yapeConfirmAmountNode = document.querySelector("#yape-confirm-amount"),
+  yapeSuccessDetails = document.querySelector("#yape-success-details");
 
 function money(value) {
   return new Intl.NumberFormat("es-PE", { style: "currency", currency: "PEN" }).format(value);
@@ -39,8 +42,8 @@ function initCheckout() {
       const itemTotal = item.price * item.quantity;
       total += itemTotal;
       const row = document.createElement("div");
-      row.style.cssText = "display:flex;justify-content:space-between;margin-bottom:0.5rem;";
-      row.innerHTML = `<span>${item.name} (x${item.quantity})</span><strong>${money(itemTotal)}</strong>`;
+      row.style.cssText = "display:flex;justify-content:space-between;align-items:center;margin-bottom:0.75rem;padding-bottom:0.5rem;border-bottom:1px dashed var(--color-line);";
+      row.innerHTML = `<span style="font-size:0.9rem;"><strong>${item.name}</strong> <span class="muted">(x${item.quantity})</span></span><strong style="font-size:0.95rem;">${money(itemTotal)}</strong>`;
       checkoutItemsNode.append(row);
     });
   }
@@ -65,6 +68,7 @@ form?.addEventListener("submit", async (e) => {
   const customerPhone = phoneInput?.value.trim() || "";
   const customerEmail = emailInput?.value.trim() || "cliente@ejemplo.com";
   const address = addressInput?.value.trim() || "";
+  const yapeCode = yapeCodeInput?.value.trim() || "";
 
   const deliveryElem = form.querySelector('input[name="delivery"]:checked');
   const paymentElem = form.querySelector('input[name="payment"]:checked');
@@ -80,7 +84,7 @@ form?.addEventListener("submit", async (e) => {
     customerPhone,
     address,
     deliveryMethod,
-    paymentMethod,
+    paymentMethod: paymentMethod === 'yape' && yapeCode ? `yape (Ref: ${yapeCode})` : paymentMethod,
     items,
     subtotal,
     shippingCost: 0,
@@ -104,6 +108,8 @@ form?.addEventListener("submit", async (e) => {
       if (successNumberNode) successNumberNode.textContent = `#${data.id}`;
       if (successTotalNode) successTotalNode.textContent = money(subtotal);
       if (successPaymentNode) successPaymentNode.textContent = paymentMethod.toUpperCase();
+      if (yapeConfirmAmountNode) yapeConfirmAmountNode.textContent = subtotal.toFixed(2);
+      if (yapeSuccessDetails) yapeSuccessDetails.hidden = (paymentMethod !== 'yape');
       checkoutSuccess.hidden = false;
     }
   } catch (err) {

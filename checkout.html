@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Finalizar pedido en Exclusive Shop.">
+  <meta name="description" content="Finalizar pedido en Exclusive Shop con pago Yape, Plin y tarjeta.">
   <title>Finalizar Pedido | Exclusive Shop</title>
   <link rel="stylesheet" href="assets/css/styles.css">
   <script src="https://unpkg.com/lucide@latest"></script>
@@ -16,6 +16,9 @@
         Exclusive Shop
       </a>
       <div class="nav-links">
+        <a class="nav-link" href="index.html">
+          <i data-lucide="home"></i> Inicio
+        </a>
         <a class="nav-link" href="catalogo.html">
           <i data-lucide="grid"></i> Catálogo
         </a>
@@ -28,40 +31,65 @@
   </header>
 
   <main class="page-section container">
-    <header class="section-heading">
-      <p class="eyebrow"><i data-lucide="shield-check"></i> Proceso de Pago Seguro</p>
-      <h1>Finalizar Compra</h1>
-      <p class="lead">Completa tus datos para preparar el despacho de tu pedido.</p>
+    <header class="section-heading" style="margin-bottom: 2rem;">
+      <span class="eyebrow"><i data-lucide="shield-check"></i> Proceso de Pago Seguro</span>
+      <h1 style="font-size: 2.2rem;">Finalizar Compra</h1>
+      <p class="lead">Completa tus datos para preparar el despacho inmediato de tu pedido.</p>
     </header>
 
     <p id="checkout-status" class="admin-status" role="status" hidden></p>
 
-    <div id="checkout-empty" class="card catalog-status" hidden>
+    <div id="checkout-empty" class="card catalog-status" style="padding: 3rem 2rem; text-align: center;" hidden>
+      <i data-lucide="shopping-bag" style="width: 48px; height: 48px; color: var(--color-muted); margin-bottom: 1rem;"></i>
       <h2>Tu carrito está vacío</h2>
       <p class="muted" style="margin-bottom: 1.5rem;">Agrega artículos al carrito antes de proceder al checkout.</p>
       <a class="button button--accent" href="catalogo.html"><i data-lucide="arrow-right"></i> Ir al catálogo</a>
     </div>
 
-    <div id="checkout-success" class="card catalog-status" style="padding:3rem 2rem;" hidden>
-      <div style="width:64px;height:64px;margin:0 auto 1rem;background:var(--color-success-light);color:var(--color-success);border-radius:50%;display:grid;place-items:center;">
-        <i data-lucide="check-circle-2" style="width:36px;height:36px;"></i>
+    <!-- Success Screen -->
+    <div id="checkout-success" class="card catalog-status" style="padding: 3.5rem 2rem; text-align: center;" hidden>
+      <div style="width:72px; height:72px; margin:0 auto 1.25rem; background:var(--color-success-light); color:var(--color-success); border-radius:50%; display:grid; place-items:center;">
+        <i data-lucide="check-circle-2" style="width:42px; height:42px;"></i>
       </div>
-      <h2 style="color:var(--color-success); margin-bottom:0.5rem;">¡Pedido Confirmado con Éxito!</h2>
-      <p class="muted" style="margin-bottom:1.5rem;">Hemos registrado tu pedido correctamente en el sistema.</p>
+      <h2 style="color:var(--color-success); font-size: 2rem; margin-bottom:0.5rem;">¡Pedido Confirmado con Éxito!</h2>
+      <p class="muted" style="margin-bottom:1.5rem;">Hemos registrado tu pedido correctamente. Nos pondremos en contacto contigo vía WhatsApp.</p>
       
-      <div class="card" style="max-width:480px; margin:0 auto 2rem; padding:1.5rem; text-align:left; background:#f8fafc;">
-        <p style="margin-bottom:0.5rem;"><strong>Número de Pedido:</strong> <span id="success-order-number" style="color:var(--color-accent); font-weight:800;"></span></p>
-        <p style="margin-bottom:0.5rem;"><strong>Total Pagado:</strong> <strong id="success-order-total" style="font-size:1.2rem;"></strong></p>
-        <p style="margin-bottom:0;"><strong>Método de Pago:</strong> <span id="success-payment-method" style="text-transform:uppercase;"></span></p>
+      <div class="card" style="max-width:520px; margin:0 auto 2rem; padding:1.75rem; text-align:left; background:#f8fafc;">
+        <p style="margin-bottom:0.5rem; display:flex; justify-content:space-between;">
+          <span>Número de Pedido:</span>
+          <strong id="success-order-number" style="color:var(--color-accent); font-weight:800; font-size:1.1rem;"></strong>
+        </p>
+        <p style="margin-bottom:0.5rem; display:flex; justify-content:space-between;">
+          <span>Total a Pagar:</span>
+          <strong id="success-order-total" style="font-size:1.25rem;"></strong>
+        </p>
+        <p style="margin-bottom:1rem; display:flex; justify-content:space-between;">
+          <span>Método de Pago:</span>
+          <strong id="success-payment-method" style="text-transform:uppercase; color:var(--color-yape);"></strong>
+        </p>
+
+        <!-- Yape instructions in order confirmation -->
+        <div id="yape-success-details" style="border-top:1px solid var(--color-line); padding-top:1rem; margin-top:1rem;">
+          <div style="display:flex; align-items:center; gap:0.5rem; font-weight:700; color:var(--color-yape); margin-bottom:0.5rem;">
+            <i data-lucide="qr-code"></i> Pago pendiente por Yape / Plin
+          </div>
+          <p style="font-size:0.85rem; color:var(--color-muted); margin-bottom:0.75rem;">
+            Si aún no has realizado el yapeo, envía <strong>S/ <span id="yape-confirm-amount"></span></strong> al número <strong>987 654 321</strong> (Exclusive Shop) o escanea el QR.
+          </p>
+          <button type="button" class="button button--yape button--small button--full" onclick="openYapeModal()">
+            <i data-lucide="maximize-2"></i> Ver QR de Yape / Plin
+          </button>
+        </div>
       </div>
 
       <a class="button button--accent" href="catalogo.html"><i data-lucide="shopping-bag"></i> Volver a la Tienda</a>
     </div>
 
+    <!-- Checkout Form Layout -->
     <div id="checkout-content" class="cart-layout" hidden>
-      <form id="checkout-form" class="card form-card" style="padding:1.75rem;" novalidate>
-        <h2 style="font-size:1.25rem; margin-bottom:1.25rem; display:flex; align-items:center; gap:0.5rem;">
-          <i data-lucide="user"></i> 1. Datos de Contacto
+      <form id="checkout-form" class="card form-card" style="padding: 2rem;" novalidate>
+        <h2 style="font-size:1.3rem; margin-bottom:1.25rem; display:flex; align-items:center; gap:0.5rem;">
+          <i data-lucide="user" style="color:var(--color-accent);"></i> 1. Datos de Contacto
         </h2>
         
         <div class="form-grid">
@@ -77,7 +105,7 @@
           </div>
 
           <label class="field">
-            Teléfono celular / WhatsApp
+            Teléfono celular / WhatsApp (Para confirmar despacho)
             <input id="checkout-phone" type="tel" placeholder="Ej. 999 888 777" required>
           </label>
 
@@ -86,41 +114,68 @@
             <input id="checkout-email" type="email" placeholder="correo@ejemplo.com">
           </label>
 
-          <h2 style="font-size:1.25rem; margin:1rem 0 0.5rem 0; display:flex; align-items:center; gap:0.5rem;">
-            <i data-lucide="truck"></i> 2. Método de Entrega
+          <h2 style="font-size:1.3rem; margin:1.5rem 0 0.75rem 0; display:flex; align-items:center; gap:0.5rem;">
+            <i data-lucide="truck" style="color:var(--color-accent);"></i> 2. Método de Entrega
           </h2>
           <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
-            <label class="card" style="padding:1rem; cursor:pointer; display:flex; align-items:center; gap:0.5rem;">
-              <input type="radio" name="delivery" value="pickup" checked> Recojo en tienda
+            <label class="card" style="padding:1rem; cursor:pointer; display:flex; align-items:center; gap:0.6rem; border-color:var(--color-line);">
+              <input type="radio" name="delivery" value="pickup" checked> Recojo en tienda (Gratis)
             </label>
-            <label class="card" style="padding:1rem; cursor:pointer; display:flex; align-items:center; gap:0.5rem;">
+            <label class="card" style="padding:1rem; cursor:pointer; display:flex; align-items:center; gap:0.6rem; border-color:var(--color-line);">
               <input type="radio" name="delivery" value="delivery"> Envío a domicilio
             </label>
           </div>
 
           <label class="field" style="margin-top:0.5rem;">
-            Dirección de Envío
-            <input id="checkout-address" type="text" placeholder="Av. Principal 123, Dpto 401">
+            Dirección de Envío (Opcional si recoges en tienda)
+            <input id="checkout-address" type="text" placeholder="Av. Principal 123, Dpto 401, Miraflores">
           </label>
 
-          <h2 style="font-size:1.25rem; margin:1rem 0 0.5rem 0; display:flex; align-items:center; gap:0.5rem;">
-            <i data-lucide="credit-card"></i> 3. Método de Pago
+          <h2 style="font-size:1.3rem; margin:1.5rem 0 0.75rem 0; display:flex; align-items:center; gap:0.5rem;">
+            <i data-lucide="credit-card" style="color:var(--color-accent);"></i> 3. Método de Pago
           </h2>
+
           <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
-            <label class="card" style="padding:1rem; cursor:pointer; display:flex; align-items:center; gap:0.5rem;">
-              <input type="radio" name="payment" value="yape" checked> Yape / Plin
+            <label class="card" style="padding:1rem; cursor:pointer; display:flex; align-items:center; gap:0.6rem; border:2px solid var(--color-yape); background: rgba(116,34,132,0.04);">
+              <input type="radio" name="payment" value="yape" checked id="pay-yape-radio"> 
+              <strong style="color:var(--color-yape);">💜 Yape / Plin (Recomendado)</strong>
             </label>
-            <label class="card" style="padding:1rem; cursor:pointer; display:flex; align-items:center; gap:0.5rem;">
-              <input type="radio" name="payment" value="transferencia"> Transferencia
+            <label class="card" style="padding:1rem; cursor:pointer; display:flex; align-items:center; gap:0.6rem; border-color:var(--color-line);">
+              <input type="radio" name="payment" value="transferencia" id="pay-transfer-radio"> Transferencia BCP / Interbank
             </label>
+          </div>
+
+          <!-- Yape Payment Box in Checkout -->
+          <div id="yape-checkout-box" class="card" style="background: linear-gradient(135deg, #fdf4ff 0%, #f5f3ff 100%); border: 1.5px solid var(--color-yape); padding: 1.5rem; margin-top: 1rem;">
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem;">
+              <div>
+                <span class="yape-badge" style="background: var(--color-yape-gradient); color: white;"><i data-lucide="qr-code"></i> Escanea con Yape o Plin</span>
+                <h4 style="font-size: 1.1rem; color: var(--color-yape); margin-top: 0.3rem;">Yapea al N° 987 654 321</h4>
+                <p style="font-size: 0.85rem; color: var(--color-muted);">Titular: Exclusive Shop Peru</p>
+              </div>
+              <button type="button" class="button button--yape button--small" onclick="openYapeModal()">
+                <i data-lucide="maximize-2"></i> Ver QR Grande
+              </button>
+            </div>
+
+            <div style="display: flex; gap: 1rem; align-items: center; background: white; padding: 1rem; border-radius: var(--radius-sm); border: 1px fill var(--color-line);">
+              <div id="yape-checkout-qr" style="width: 90px; height: 90px; flex-shrink: 0; cursor: pointer;" onclick="openYapeModal()"></div>
+              <div style="flex: 1;">
+                <label class="field" style="margin-bottom: 0;">
+                  N° de Operación / Código Yape (Opcional)
+                  <input id="checkout-yape-code" type="text" placeholder="Ej. 849201">
+                </label>
+              </div>
+            </div>
           </div>
         </div>
       </form>
 
+      <!-- Order Summary -->
       <aside class="card order-summary" aria-label="Resumen de pago">
-        <h2 style="font-size: 1.25rem; margin-bottom: 1.25rem;">Resumen del pedido</h2>
+        <h2 style="font-size: 1.3rem; margin-bottom: 1.25rem;">Resumen del pedido</h2>
         
-        <div id="checkout-items" style="margin-bottom: 1rem;"></div>
+        <div id="checkout-items" style="margin-bottom: 1rem; max-height: 280px; overflow-y: auto; padding-right: 0.4rem;"></div>
 
         <div class="summary-row">
           <span>Subtotal</span>
@@ -133,21 +188,111 @@
 
         <div class="summary-total">
           <span>Total a pagar</span>
-          <strong id="checkout-total">S/ 0.00</strong>
+          <strong id="checkout-total" style="color:var(--color-accent);">S/ 0.00</strong>
         </div>
 
-        <button id="checkout-confirm" class="button button--accent button--full" type="submit" form="checkout-form" style="margin-top: 1.5rem;">
+        <button id="checkout-confirm" class="button button--accent button--full" type="submit" form="checkout-form" style="margin-top: 1.5rem; font-size: 1.05rem;">
           <i data-lucide="zap"></i> Confirmar y Pagar
         </button>
       </aside>
     </div>
   </main>
 
-  <footer class="footer container">
-    © <span data-current-year></span> Exclusive Shop. Todos los derechos reservados.
+  <!-- YAPE & PLIN MODAL -->
+  <div class="modal-overlay" id="yape-modal">
+    <div class="modal-card" style="text-align: center;">
+      <button class="modal-close" onclick="closeYapeModal()"><i data-lucide="x"></i></button>
+      
+      <div class="yape-badge" style="background: var(--color-yape-gradient); color: white; font-size: 0.9rem; margin-bottom: 1rem;">
+        <i data-lucide="qr-code"></i> Código QR Yape / Plin
+      </div>
+      
+      <h2 style="font-size: 1.6rem; margin-bottom: 0.4rem; color: var(--color-yape);">Exclusive Shop Perú</h2>
+      <p style="font-size: 0.9rem; color: var(--color-muted); margin-bottom: 1.25rem;">Escanea desde tu app Yape o Plin para confirmar tu pedido</p>
+      
+      <div style="background: #f8fafc; border: 2px dashed var(--color-yape); border-radius: var(--radius); padding: 1.5rem; display: inline-block; margin-bottom: 1.25rem;">
+        <div id="yape-modal-qr-container"></div>
+      </div>
+
+      <div style="background: #f1f5f9; padding: 0.85rem 1.2rem; border-radius: 999px; display: flex; align-items: center; justify-content: space-between; max-width: 340px; margin: 0 auto 1.25rem;">
+        <span style="font-weight: 700; font-size: 1.1rem; color: var(--color-yape);">📱 987 654 321</span>
+        <button class="button button--small button--accent" onclick="copyYapeNumber()" style="padding: 0.35rem 0.85rem;">
+          <i data-lucide="copy"></i> Copiar
+        </button>
+      </div>
+
+      <p style="font-size: 0.82rem; color: var(--color-muted); line-height: 1.4;">
+        1. Abre tu app Yape o Plin en tu smartphone.<br>
+        2. Selecciona <strong>Escanear QR</strong> y enfoca este código.<br>
+        3. Digita el monto de tu compra e ingresa el N° de Operación en el checkout.
+      </p>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container footer-bottom">
+      <div>© <span data-current-year></span> Exclusive Shop. Todos los derechos reservados.</div>
+    </div>
   </footer>
 
   <script src="assets/js/app.js"></script>
   <script type="module" src="assets/js/firebase/checkout.js"></script>
+  <script>
+    function generateYapeSVG(size = 180) {
+      return `
+        <svg width="${size}" height="${size}" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="200" height="200" rx="16" fill="white"/>
+          <path d="M20 20H80V80H20V20Z" stroke="#742284" stroke-width="12" fill="white"/>
+          <rect x="36" y="36" width="28" height="28" fill="#742284"/>
+          
+          <path d="M120 20H180V80H120V20Z" stroke="#742284" stroke-width="12" fill="white"/>
+          <rect x="136" y="36" width="28" height="28" fill="#742284"/>
+          
+          <path d="M20 120H80V180H20V120Z" stroke="#742284" stroke-width="12" fill="white"/>
+          <rect x="36" y="136" width="28" height="28" fill="#742284"/>
+          
+          <rect x="100" y="20" width="12" height="12" fill="#742284"/>
+          <rect x="100" y="44" width="12" height="24" fill="#00D2D3"/>
+          <rect x="20" y="94" width="24" height="12" fill="#742284"/>
+          <rect x="56" y="94" width="36" height="12" fill="#9C27B0"/>
+          
+          <rect x="100" y="100" width="20" height="20" fill="#742284"/>
+          <rect x="130" y="100" width="30" height="12" fill="#742284"/>
+          <rect x="170" y="100" width="10" height="40" fill="#00D2D3"/>
+          <rect x="100" y="130" width="20" height="50" fill="#9C27B0"/>
+          <rect x="130" y="130" width="30" height="20" fill="#742284"/>
+          <rect x="140" y="160" width="40" height="20" fill="#742284"/>
+          
+          <rect x="80" y="80" width="40" height="40" rx="10" fill="#742284"/>
+          <text x="100" y="105" font-family="Outfit, sans-serif" font-weight="900" font-size="16" fill="white" text-anchor="middle">Y</text>
+        </svg>
+      `;
+    }
+    const qrBox = document.getElementById('yape-checkout-qr');
+    const modalQrBox = document.getElementById('yape-modal-qr-container');
+    if (qrBox) qrBox.innerHTML = generateYapeSVG(90);
+    if (modalQrBox) modalQrBox.innerHTML = generateYapeSVG(240);
+
+    window.openYapeModal = function() {
+      document.getElementById('yape-modal').classList.add('active');
+    };
+    window.closeYapeModal = function() {
+      document.getElementById('yape-modal').classList.remove('active');
+    };
+    window.copyYapeNumber = function() {
+      navigator.clipboard.writeText('987654321');
+      alert('¡Número de Yape (987654321) copiado al portapapeles!');
+    };
+
+    // Toggle Yape details display
+    const yapeBox = document.getElementById('yape-checkout-box');
+    const payYapeRadio = document.getElementById('pay-yape-radio');
+    const payTransferRadio = document.getElementById('pay-transfer-radio');
+
+    if (payYapeRadio && payTransferRadio && yapeBox) {
+      payYapeRadio.addEventListener('change', () => { yapeBox.style.display = 'block'; });
+      payTransferRadio.addEventListener('change', () => { yapeBox.style.display = 'none'; });
+    }
+  </script>
 </body>
 </html>

@@ -16,6 +16,9 @@
         Exclusive Shop
       </a>
       <div class="nav-links">
+        <a class="nav-link" href="index.html">
+          <i data-lucide="home"></i> Inicio
+        </a>
         <a class="nav-link" href="catalogo.html">
           <i data-lucide="grid"></i> Catálogo
         </a>
@@ -29,12 +32,14 @@
 
   <main class="page-section container">
     <p id="product-cart-message" class="cart-message" hidden></p>
-    <div id="product-status" class="card catalog-status">Cargando producto…</div>
+    <div id="product-status" class="card catalog-status" style="padding: 2.5rem; text-align: center;">Cargando producto…</div>
     <div id="product-detail" hidden></div>
   </main>
 
-  <footer class="footer container">
-    © <span data-current-year></span> Exclusive Shop. Todos los derechos reservados.
+  <footer class="footer">
+    <div class="container footer-bottom">
+      <div>© <span data-current-year></span> Exclusive Shop. Todos los derechos reservados.</div>
+    </div>
   </footer>
 
   <script src="assets/js/app.js"></script>
