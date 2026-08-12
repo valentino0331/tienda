@@ -3,16 +3,49 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Exclusive Shop, tienda de perfumes y productos premium.">
-  <title>Exclusive Shop | Productos premium</title>
+  <meta name="description" content="Exclusive Shop, tienda de perfumes y productos premium de lujo.">
+  <title>Exclusive Shop | Selección Premium</title>
   <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
-  <header class="site-header"><nav class="nav container" aria-label="Principal"><a class="brand" href="index.html">Exclusive Shop</a><div class="nav-links"><a href="catalogo.html">Catálogo</a><a href="carrito.html">Carrito</a></div></nav></header>
+  <header class="site-header">
+    <nav class="nav container" aria-label="Navegación Principal">
+      <a class="brand" href="index.html">
+        <span class="brand-icon">✦</span>
+        Exclusive Shop
+      </a>
+      <div class="nav-links">
+        <a class="nav-link" href="catalogo.html">Catálogo</a>
+        <a class="cart-link" href="carrito.html">
+          🛒 Carrito
+          <span class="cart-count" data-cart-count hidden>0</span>
+        </a>
+      </div>
+    </nav>
+  </header>
+
   <main>
-    <section class="hero"><div class="container"><p class="eyebrow">Selección premium</p><h1>Detalles que dejan huella.</h1><p class="lead">Una futura selección de perfumes y productos premium elegidos para acompañar tu estilo.</p><a class="button" href="catalogo.html">Explorar catálogo</a></div></section>
+    <section class="hero">
+      <div class="container">
+        <p class="eyebrow">✦ Selección Exclusiva 2026</p>
+        <h1>Detalles que dejan huella.</h1>
+        <p class="lead">Explora nuestra colección curada de fragancias de lujo, perfumes y productos premium diseñados para resaltar tu presencia.</p>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+          <a class="button button--accent" href="catalogo.html"> Ver Catálogo Completo ➔</a>
+          <a class="button button--outline" href="admin/login.html"> Acceso Admin</a>
+        </div>
+      </div>
+    </section>
   </main>
-  <footer class="footer container">© <span data-current-year></span> Exclusive Shop</footer>
+
+  <footer class="footer container">
+    © <span data-current-year></span> Exclusive Shop. Todos los derechos reservados.
+  </footer>
+  
   <script src="assets/js/app.js"></script>
+  <script type="module">
+    import { syncCartCount } from "./assets/js/cart.js";
+    syncCartCount();
+  </script>
 </body>
 </html>
