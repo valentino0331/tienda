@@ -1,20 +1,41 @@
-const grid = document.querySelector("#catalog-grid"),
-  empty = document.querySelector("#catalog-empty"),
+const grid = document.querySelector("#catalog-products"),
+  statusNode = document.querySelector("#catalog-status"),
   search = document.querySelector("#catalog-search"),
-  category = document.querySelector("#catalog-category"),
-  status = document.querySelector("#catalog-status");
+  categoryFiltersNode = document.querySelector("#category-filters"),
+  resultCountNode = document.querySelector("#catalog-result-count");
 
-let products = [], categories = [];
+let products = [], categories = [], selectedCategoryId = "";
 
 function money(value) {
   return new Intl.NumberFormat("es-PE", { style: "currency", currency: "PEN" }).format(value);
 }
 
-function renderCategoryOptions() {
-  if (!category) return;
-  category.replaceChildren(new Option("Todas las categorías", ""));
+function renderCategoryFilters() {
+  if (!categoryFiltersNode) return;
+  categoryFiltersNode.replaceChildren();
+
+  const allBtn = document.createElement("button");
+  allBtn.type = "button";
+  allBtn.className = `filter ${!selectedCategoryId ? "filter--active" : ""}`;
+  allBtn.textContent = "Todas las categorías";
+  allBtn.onclick = () => {
+    selectedCategoryId = "";
+    renderCategoryFilters();
+    renderProducts();
+  };
+  categoryFiltersNode.append(allBtn);
+
   categories.filter((c) => c.isActive).forEach((c) => {
-    category.add(new Option(c.name, c.id));
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = `filter ${selectedCategoryId === c.id ? "filter--active" : ""}`;
+    btn.textContent = c.name;
+    btn.onclick = () => {
+      selectedCategoryId = c.id;
+      renderCategoryFilters();
+      renderProducts();
+    };
+    categoryFiltersNode.append(btn);
   });
 }
 
@@ -23,43 +44,73 @@ function renderProducts() {
   grid.replaceChildren();
 
   const term = search?.value.trim().toLowerCase() || "";
-  const catId = category?.value || "";
 
   const filtered = products.filter((p) => {
     if (!p.isActive) return false;
-    if (p.stock <= 0) return false;
-    if (catId && p.categoryId !== catId) return false;
+    if (selectedCategoryId && p.categoryId !== selectedCategoryId) return false;
     if (term && !p.name.toLowerCase().includes(term) && !p.description.toLowerCase().includes(term)) return false;
     return true;
   });
 
-  if (empty) empty.hidden = filtered.length > 0;
+  if (statusNode) {
+    if (filtered.length === 0) {
+      statusNode.textContent = "No hay productos disponibles en esta categoría.";
+      statusNode.hidden = false;
+      grid.hidden = true;
+    } else {
+      statusNode.hidden = true;
+      grid.hidden = false;
+    }
+  }
+
+  if (resultCountNode) {
+    resultCountNode.textContent = `${filtered.length} producto(s) encontrado(s)`;
+    resultCountNode.hidden = false;
+  }
 
   filtered.forEach((p) => {
     const card = document.createElement("article");
     card.className = "card product-card";
 
-    const img = document.createElement("img");
-    img.className = "product-card__image";
-    img.src = p.image || "assets/images/placeholder.webp";
-    img.alt = p.name;
+    const link = document.createElement("a");
+    link.href = `producto.html?id=${p.id}`;
+
+    if (p.image) {
+      const img = document.createElement("img");
+      img.className = "product-card__image";
+      img.src = p.image;
+      img.alt = p.name;
+      link.append(img);
+    } else {
+      const placeholder = document.createElement("div");
+      placeholder.className = "product-card__image product-card__image--placeholder";
+      placeholder.textContent = "Sin imagen";
+      link.append(placeholder);
+    }
 
     const body = document.createElement("div");
     body.className = "product-card__body";
 
     const title = document.createElement("h3");
     title.className = "product-card__title";
-    const link = document.createElement("a");
-    link.href = `producto.html?id=${p.id}`;
-    link.textContent = p.name;
-    title.append(link);
+    const titleLink = document.createElement("a");
+    titleLink.href = `producto.html?id=${p.id}`;
+    titleLink.textContent = p.name;
+    title.append(titleLink);
 
     const price = document.createElement("p");
     price.className = "product-card__price";
-    price.textContent = money(p.price);
+    const regPrice = Number.isFinite(p.regularPrice) ? p.regularPrice : p.price;
+    const salPrice = Number.isFinite(p.salePrice) && p.salePrice < regPrice ? p.salePrice : null;
+
+    if (salPrice !== null) {
+      price.innerHTML = `<s>${money(regPrice)}</s> <strong>${money(salPrice)}</strong>`;
+    } else {
+      price.textContent = money(regPrice);
+    }
 
     body.append(title, price);
-    card.append(img, body);
+    card.append(link, body);
     grid.append(card);
   });
 }
@@ -74,17 +125,16 @@ async function loadData() {
     if (resCat.ok) categories = await resCat.json();
     if (resProd.ok) products = await resProd.json();
 
-    renderCategoryOptions();
+    renderCategoryFilters();
     renderProducts();
   } catch (err) {
-    if (status) {
-      status.textContent = "Error al cargar catálogo.";
-      status.hidden = false;
+    if (statusNode) {
+      statusNode.textContent = "Error al cargar el catálogo de productos.";
+      statusNode.hidden = false;
     }
   }
 }
 
 search?.addEventListener("input", renderProducts);
-category?.addEventListener("change", renderProducts);
 
 loadData();
