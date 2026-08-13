@@ -12,7 +12,7 @@
   <header class="site-header">
     <nav class="nav container" aria-label="Navegación Principal">
       <a class="brand" href="index.html">
-        <span class="brand-icon"><i data-lucide="sparkles"></i></span>
+        <span class="brand-icon"><i data-lucide="crown"></i></span>
         Exclusive Shop
       </a>
       <div class="nav-links">
@@ -32,7 +32,7 @@
 
   <main class="page-section container">
     <header class="section-heading" style="margin-bottom: 2rem;">
-      <span class="eyebrow"><i data-lucide="shield-check"></i> Proceso de Pago Seguro</span>
+      <p class="eyebrow"><i data-lucide="shield-check"></i> Proceso de Pago Seguro</p>
       <h1 style="font-size: 2.2rem;">Finalizar Compra</h1>
       <p class="lead">Completa tus datos para preparar el despacho inmediato de tu pedido.</p>
     </header>
@@ -52,7 +52,7 @@
         <i data-lucide="check-circle-2" style="width:42px; height:42px;"></i>
       </div>
       <h2 style="color:var(--color-success); font-size: 2rem; margin-bottom:0.5rem;">¡Pedido Confirmado con Éxito!</h2>
-      <p class="muted" style="margin-bottom:1.5rem;">Hemos registrado tu pedido correctamente. Nos pondremos en contacto contigo vía WhatsApp.</p>
+      <p class="muted" style="margin-bottom:1.5rem;">Hemos registrado tu pedido correctamente en el sistema.</p>
       
       <div class="card" style="max-width:520px; margin:0 auto 2rem; padding:1.75rem; text-align:left; background:#f8fafc;">
         <p style="margin-bottom:0.5rem; display:flex; justify-content:space-between;">
@@ -138,10 +138,14 @@
           <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
             <label class="card" style="padding:1rem; cursor:pointer; display:flex; align-items:center; gap:0.6rem; border:2px solid var(--color-yape); background: rgba(116,34,132,0.04);">
               <input type="radio" name="payment" value="yape" checked id="pay-yape-radio"> 
-              <strong style="color:var(--color-yape);">💜 Yape / Plin (Recomendado)</strong>
+              <span style="display:inline-flex;align-items:center;gap:0.4rem;">
+                <span class="pay-badge pay-badge--yape">Yape</span>
+                <span class="pay-badge pay-badge--plin">Plin</span>
+              </span>
             </label>
             <label class="card" style="padding:1rem; cursor:pointer; display:flex; align-items:center; gap:0.6rem; border-color:var(--color-line);">
-              <input type="radio" name="payment" value="transferencia" id="pay-transfer-radio"> Transferencia BCP / Interbank
+              <input type="radio" name="payment" value="transferencia" id="pay-transfer-radio"> 
+              <span style="display:inline-flex;align-items:center;gap:0.4rem;"><i data-lucide="landmark"></i> Transferencia BCP / Interbank</span>
             </label>
           </div>
 
@@ -158,7 +162,7 @@
               </button>
             </div>
 
-            <div style="display: flex; gap: 1rem; align-items: center; background: white; padding: 1rem; border-radius: var(--radius-sm); border: 1px fill var(--color-line);">
+            <div style="display: flex; gap: 1rem; align-items: center; background: white; padding: 1rem; border-radius: var(--radius-sm); border: 1px solid var(--color-line);">
               <div id="yape-checkout-qr" style="width: 90px; height: 90px; flex-shrink: 0; cursor: pointer;" onclick="openYapeModal()"></div>
               <div style="flex: 1;">
                 <label class="field" style="margin-bottom: 0;">
@@ -215,7 +219,7 @@
       </div>
 
       <div style="background: #f1f5f9; padding: 0.85rem 1.2rem; border-radius: 999px; display: flex; align-items: center; justify-content: space-between; max-width: 340px; margin: 0 auto 1.25rem;">
-        <span style="font-weight: 700; font-size: 1.1rem; color: var(--color-yape);">📱 987 654 321</span>
+        <span style="font-weight: 700; font-size: 1.1rem; color: var(--color-yape);"><i data-lucide="phone"></i> 987 654 321</span>
         <button class="button button--small button--accent" onclick="copyYapeNumber()" style="padding: 0.35rem 0.85rem;">
           <i data-lucide="copy"></i> Copiar
         </button>
@@ -280,11 +284,13 @@
       document.getElementById('yape-modal').classList.remove('active');
     };
     window.copyYapeNumber = function() {
-      navigator.clipboard.writeText('987654321');
-      alert('¡Número de Yape (987654321) copiado al portapapeles!');
+      if (window.copyToClipboard) {
+        window.copyToClipboard('987654321', 'Número de Yape (987 654 321) copiado');
+      } else {
+        navigator.clipboard.writeText('987654321');
+      }
     };
 
-    // Toggle Yape details display
     const yapeBox = document.getElementById('yape-checkout-box');
     const payYapeRadio = document.getElementById('pay-yape-radio');
     const payTransferRadio = document.getElementById('pay-transfer-radio');

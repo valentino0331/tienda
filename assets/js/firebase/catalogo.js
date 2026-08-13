@@ -18,7 +18,7 @@ function renderCategoryFilters() {
 
   const allBtn = document.createElement("button");
   allBtn.type = "button";
-  allBtn.className = `filter ${!selectedCategoryId ? "filter--active" : ""}`;
+  allBtn.className = `filter-pill ${!selectedCategoryId ? "active" : ""}`;
   allBtn.innerHTML = `<i data-lucide="grid"></i> Todas las categorías`;
   allBtn.onclick = () => {
     selectedCategoryId = "";
@@ -30,7 +30,7 @@ function renderCategoryFilters() {
   categories.filter((c) => c.isActive).forEach((c) => {
     const btn = document.createElement("button");
     btn.type = "button";
-    btn.className = `filter ${selectedCategoryId === c.id ? "filter--active" : ""}`;
+    btn.className = `filter-pill ${selectedCategoryId === c.id ? "active" : ""}`;
     btn.innerHTML = `<i data-lucide="tag"></i> ${c.name}`;
     btn.onclick = () => {
       selectedCategoryId = c.id;

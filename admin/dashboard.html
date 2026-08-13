@@ -4,11 +4,28 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Dashboard administrativo de Exclusive Shop.">
-  <title>Dashboard | Exclusive Shop</title>
   <link rel="stylesheet" href="../assets/css/styles.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
-  <header class="site-header"><nav class="nav container" aria-label="Administración"><a class="brand" href="../index.html">Exclusive Shop</a><div class="nav-links"><span>Dashboard</span><a href="categorias.html">Categorías</a><a href="productos.html">Productos</a><a href="inventario.html">Inventario</a><a href="pagos.html">Pagos</a><a href="reportes.html">Reportes</a><span id="admin-identity" class="muted" hidden></span><button id="admin-logout" class="button" type="button">Salir</button></div></nav></header>
+  <header class="site-header">
+    <nav class="nav container" aria-label="Administración">
+      <a class="brand" href="../index.html">
+        <span class="brand-icon"><i data-lucide="crown"></i></span>
+        Exclusive Shop
+      </a>
+      <div class="nav-links">
+        <span class="nav-link active"><i data-lucide="layout-dashboard"></i> Dashboard</span>
+        <a class="nav-link" href="categorias.html"><i data-lucide="folder"></i> Categorías</a>
+        <a class="nav-link" href="productos.html"><i data-lucide="package"></i> Productos</a>
+        <a class="nav-link" href="inventario.html"><i data-lucide="boxes"></i> Inventario</a>
+        <a class="nav-link" href="pagos.html"><i data-lucide="credit-card"></i> Pagos</a>
+        <a class="nav-link" href="reportes.html"><i data-lucide="bar-chart-3"></i> Reportes</a>
+        <span id="admin-identity" class="muted" hidden></span>
+        <button id="admin-logout" class="button button--small button--outline" type="button"><i data-lucide="log-out"></i> Salir</button>
+      </div>
+    </nav>
+  </header>
   <main id="admin-dashboard-content" class="dashboard container" hidden>
     <header class="section-heading"><p class="eyebrow">Administración</p><h1>Dashboard</h1><p>Resumen de ventas registradas, operación y estado actual del negocio.</p></header>
     <p id="dashboard-status" class="admin-status" role="status" hidden></p>

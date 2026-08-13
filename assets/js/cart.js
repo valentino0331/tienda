@@ -27,39 +27,45 @@ export function syncCartCount() {
   if (window.lucide) window.lucide.createIcons();
 }
 
-export function showToast(title, message = "Guardado en tu carrito de compras.") {
-  let container = document.querySelector(".toast-container");
+export function showToast(title, message = "Guardado en tu carrito de compras.", type = "success") {
+  let container = document.getElementById("toast-container") || document.querySelector(".toast-container");
   if (!container) {
     container = document.createElement("div");
+    container.id = "toast-container";
     container.className = "toast-container";
     document.body.append(container);
   }
 
   const toast = document.createElement("div");
-  toast.className = "toast";
+  toast.className = `toast toast--${type} glass-card toast--visible`;
   toast.innerHTML = `
     <div class="toast__icon">
-      <i data-lucide="check"></i>
+      <i data-lucide="${type === 'error' ? 'alert-circle' : 'shopping-bag'}"></i>
     </div>
     <div class="toast__content">
       <div class="toast__title">${title}</div>
       <div class="toast__message">${message}</div>
     </div>
-    <button class="toast__close" type="button">
+    <button class="toast__close" type="button" aria-label="Cerrar">
       <i data-lucide="x"></i>
     </button>
   `;
 
-  toast.querySelector(".toast__close").onclick = () => toast.remove();
+  toast.querySelector(".toast__close").onclick = () => {
+    toast.classList.remove("toast--visible");
+    toast.classList.add("toast--hiding");
+    setTimeout(() => toast.remove(), 300);
+  };
   container.append(toast);
 
   if (window.lucide) window.lucide.createIcons();
 
   setTimeout(() => {
-    toast.style.opacity = "0";
-    toast.style.transform = "translateY(10px)";
-    toast.style.transition = "all 0.3s";
-    setTimeout(() => toast.remove(), 300);
+    if (toast.parentNode) {
+      toast.classList.remove("toast--visible");
+      toast.classList.add("toast--hiding");
+      setTimeout(() => toast.remove(), 300);
+    }
   }, 3500);
 }
 
@@ -69,7 +75,7 @@ export function addToCart(product) {
 
   if (existing) {
     if (product.stock && existing.quantity >= product.stock) {
-      showToast("Sin stock adicional", "Alcanzaste el límite disponible de este producto.");
+      showToast("Sin stock adicional", "Alcanzaste el límite disponible de este producto.", "error");
       return false;
     }
     existing.quantity += 1;
@@ -87,7 +93,7 @@ export function addToCart(product) {
   }
 
   saveCart(items);
-  showToast(`¡${product.name} añadido!`, "Se agregó correctamente a tu carrito.");
+  showToast(`¡${product.name} añadido!`, "Se agregó correctamente a tu carrito.", "success");
   return true;
 }
 
